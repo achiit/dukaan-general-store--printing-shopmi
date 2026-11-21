@@ -1,0 +1,5180 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kumar General Store & Printing Shop | Pickup Requests</title>
+  <meta name="description" content="Browse General Store items and Printing Services from Kumar General Store & Printing Shop, Mithapur, Patna. Pickup only. No home delivery." />
+  <style>
+    :root {
+      --bg: #f6f8f5;
+      --ink: #15231f;
+      --muted: #61746c;
+      --line: rgba(23, 51, 43, 0.12);
+      --line-strong: rgba(23, 51, 43, 0.2);
+      --surface: rgba(255, 255, 255, 0.92);
+      --surface-strong: #ffffff;
+      --surface-soft: #f1f6f3;
+      --shadow: 0 24px 70px rgba(15, 42, 33, 0.12);
+      --shadow-soft: 0 10px 28px rgba(15, 42, 33, 0.08);
+      --radius-xl: 30px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --store: #0f766e;
+      --store-strong: #0a5b54;
+      --store-soft: #e5f5f1;
+      --print: #6d28d9;
+      --print-strong: #5819ba;
+      --print-soft: #f0e9ff;
+      --amber: #b45309;
+      --danger: #b91c1c;
+      --success: #047857;
+      --accent: var(--store);
+      --accent-strong: var(--store-strong);
+      --accent-soft: var(--store-soft);
+      --font: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.5;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(15, 118, 110, 0.12), transparent 34%),
+        radial-gradient(circle at 88% 2%, rgba(109, 40, 217, 0.09), transparent 30%),
+        linear-gradient(180deg, #fbfcfb 0%, #f3f7f4 44%, #f8faf8 100%);
+      background-attachment: fixed;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.35rem, 5.2vw, 4.55rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 22px;
+      font-weight: 850;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 2.4vw, 2.45rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 820;
+    }
+
+    h3 {
+      font-weight: 780;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.52;
+    }
+
+    address {
+      font-style: normal;
+    }
+
+    .page-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(20, 56, 46, 0.055) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 76%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 76%);
+    }
+
+    main,
+    .site-footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .shell {
+      width: min(1280px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1002;
+      transform: translateY(-160%);
+      background: #ffffff;
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.16s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    /* ========== HEADER ========== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(20, 52, 43, 0.08);
+      background: rgba(250, 252, 250, 0.79);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      width: min(1320px, calc(100% - 32px));
+      min-height: 74px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--store), #1e9c8f);
+      color: #ffffff;
+      font-weight: 850;
+      letter-spacing: -0.05em;
+      box-shadow: 0 9px 22px rgba(15, 118, 110, 0.22);
+      flex: 0 0 auto;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      font-size: 0.98rem;
+      line-height: 1.14;
+      letter-spacing: -0.025em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-copy strong span {
+      color: var(--print);
+    }
+
+    .brand-copy small {
+      color: var(--muted);
+      font-size: 0.73rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .primary-nav {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .nav-button {
+      border: 0;
+      background: transparent;
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.87rem;
+      font-weight: 680;
+      text-decoration: none;
+      transition: color 0.16s ease, background 0.16s ease;
+    }
+
+    .nav-button:hover,
+    .nav-button.is-current {
+      color: var(--ink);
+      background: rgba(15, 118, 110, 0.08);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .text-action {
+      font-size: 0.86rem;
+      font-weight: 760;
+      text-decoration: none;
+      color: var(--store-strong);
+      padding: 8px;
+    }
+
+    .header-request {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      padding: 8px 10px 8px 14px;
+      border-radius: 999px;
+      font-weight: 760;
+      color: var(--ink);
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .header-request:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .header-request-count {
+      min-width: 24px;
+      height: 24px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-size: 0.76rem;
+    }
+
+    /* ========== BUTTONS ========== */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 760;
+      text-decoration: none;
+      line-height: 1;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button--small {
+      padding: 10px 14px;
+      font-size: 0.84rem;
+    }
+
+    .button--full {
+      width: 100%;
+    }
+
+    .button--primary {
+      background: linear-gradient(135deg, var(--store), var(--store-strong));
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(15, 118, 110, 0.2);
+    }
+
+    .button--primary:hover {
+      box-shadow: 0 15px 30px rgba(15, 118, 110, 0.28);
+    }
+
+    .button--print {
+      background: linear-gradient(135deg, var(--print), var(--print-strong));
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(109, 40, 217, 0.2);
+    }
+
+    .button--print:hover {
+      box-shadow: 0 15px 30px rgba(109, 40, 217, 0.28);
+    }
+
+    .button--ghost {
+      background: rgba(255, 255, 255, 0.72);
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    .button--whatsapp {
+      background: #0e9f6e;
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 42px;
+      padding: 64px 0 38px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 840;
+      font-size: 0.71rem;
+      color: var(--store-strong);
+      margin-bottom: 14px;
+    }
+
+    .eyebrow--small {
+      font-size: 0.64rem;
+      margin-bottom: 6px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--store);
+      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+      flex: 0 0 auto;
+    }
+
+    .hero h1 span {
+      color: var(--store-strong);
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .pickup-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px dashed rgba(15, 118, 110, 0.42);
+      border-radius: 999px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink);
+      font-weight: 760;
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .pickup-cta:hover {
+      border-style: solid;
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .assurance-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 640;
+    }
+
+    .assurance-row span::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 900;
+      margin-right: 6px;
+    }
+
+    .hero-card {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.97), rgba(245, 250, 247, 0.92));
+      border: 1px solid rgba(15, 118, 110, 0.16);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--store-strong);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.12);
+    }
+
+    .owner-chip {
+      font-size: 0.71rem;
+      color: var(--muted);
+      font-weight: 680;
+    }
+
+    .hero-card h2 {
+      font-size: 1.9rem;
+      margin: 18px 0 8px;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .hero-address {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      background: var(--store-soft);
+      border: 1px solid rgba(15, 118, 110, 0.12);
+      border-radius: 16px;
+      margin: 18px 0;
+    }
+
+    .address-icon {
+      flex: 0 0 auto;
+    }
+
+    .hero-address address {
+      font-size: 0.91rem;
+      line-height: 1.55;
+    }
+
+    .hero-card-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .contact-mini {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+      font-size: 0.81rem;
+    }
+
+    .contact-mini a {
+      color: var(--store-strong);
+      text-decoration: none;
+      font-weight: 720;
+    }
+
+    .contact-mini a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== FEATURE BAND ========== */
+    .feature-band {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      padding-bottom: 34px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-item {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      box-shadow: 0 2px 10px rgba(15, 42, 33, 0.03);
+    }
+
+    .feature-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: #ffffff;
+      box-shadow: 0 5px 12px rgba(15, 42, 33, 0.06);
+      flex: 0 0 auto;
+    }
+
+    .feature-item strong {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 2px;
+    }
+
+    .feature-item small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.73rem;
+      line-height: 1.4;
+    }
+
+    /* ========== SHOP LAYOUT ========== */
+    .shop-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 390px;
+      gap: 24px;
+      align-items: start;
+      padding: 8px 0 54px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ========== CATALOG ========== */
+    .catalog-section {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      min-height: 400px;
+    }
+
+    .catalog-section.theme-general {
+      --accent: var(--store);
+      --accent-strong: var(--store-strong);
+      --accent-soft: var(--store-soft);
+    }
+
+    .catalog-section.theme-printing {
+      --accent: var(--print);
+      --accent-strong: var(--print-strong);
+      --accent-soft: var(--print-soft);
+    }
+
+    .catalog-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .heading-copy h2 {
+      margin: 8px 0 6px;
+    }
+
+    .heading-copy p {
+      color: var(--muted);
+      margin: 0;
+      max-width: 620px;
+      line-height: 1.56;
+      font-size: 0.92rem;
+    }
+
+    .section-badge {
+      display: flex;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 860;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .badge--store {
+      color: var(--store-strong);
+      background: var(--store-soft);
+      border: 1px solid rgba(15, 118, 110, 0.16);
+    }
+
+    .badge--print {
+      color: var(--print-strong);
+      background: var(--print-soft);
+      border: 1px solid rgba(109, 40, 217, 0.16);
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 5px;
+      background: var(--surface-soft);
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      flex: 0 0 auto;
+    }
+
+    .section-tab {
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      padding: 9px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: var(--muted);
+      font-weight: 740;
+      min-width: 132px;
+      transition: background 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .section-tab span {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 620;
+      margin-top: 2px;
+      color: inherit;
+      opacity: 0.75;
+    }
+
+    .section-tab.is-active {
+      background: #ffffff;
+      color: var(--ink);
+      box-shadow: 0 1px 7px rgba(20, 50, 40, 0.12);
+    }
+
+    .catalog-section.theme-general .section-tab.is-active {
+      color: var(--store-strong);
+    }
+
+    .catalog-section.theme-printing .section-tab.is-active {
+      color: var(--print-strong);
+    }
+
+    .catalog-toolbar {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 18px 0 20px;
+    }
+
+    .search-field {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 14px;
+      min-height: 50px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 16px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .search-field:focus-within {
+      border-color: rgba(15, 118, 110, 0.52);
+      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.1);
+    }
+
+    .search-icon {
+      font-size: 1.28rem;
+      color: var(--muted);
+      line-height: 1;
+    }
+
+    .search-field input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      padding: 14px 0;
+      min-width: 0;
+      font-size: 0.94rem;
+      color: var(--ink);
+    }
+
+    .search-field input::placeholder {
+      color: #93a29b;
+    }
+
+    .search-clear {
+      border: 0;
+      background: rgba(20, 50, 40, 0.08);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 1rem;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      flex: 0 0 auto;
+    }
+
+    .results-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-chip {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      font-weight: 660;
+      color: var(--muted);
+      transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .filter-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent-strong);
+    }
+
+    .filter-chip.is-active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .results-count {
+      font-size: 0.79rem;
+      color: var(--muted);
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 250px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 3px 12px rgba(20, 50, 40, 0.04);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: var(--card-accent);
+    }
+
+    .product-card--store {
+      --card-accent: var(--store);
+      --card-accent-strong: var(--store-strong);
+      --card-soft: var(--store-soft);
+    }
+
+    .product-card--print {
+      --card-accent: var(--print);
+      --card-accent-strong: var(--print-strong);
+      --card-soft: var(--print-soft);
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+      border-color: rgba(20, 50, 40, 0.18);
+    }
+
+    .product-top {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .product-icon {
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background: var(--card-soft);
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+    }
+
+    .product-title-wrap {
+      min-width: 0;
+    }
+
+    .product-title-wrap h3 {
+      font-size: 1.02rem;
+      line-height: 1.22;
+      letter-spacing: -0.022em;
+      margin: 6px 0 3px;
+    }
+
+    .product-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 14px 0 4px;
+    }
+
+    .product-price {
+      font-size: 1.35rem;
+      font-weight: 880;
+      letter-spacing: -0.045em;
+    }
+
+    .product-unit {
+      font-size: 0.73rem;
+      color: var(--muted);
+    }
+
+    .option-row {
+      margin: 10px 0 2px;
+    }
+
+    .option-label,
+    .quick-add-label {
+      display: block;
+      font-size: 0.64rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .option-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .option-chip {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 6px 8px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 670;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .option-chip span {
+      color: inherit;
+      opacity: 0.75;
+      font-size: 0.68rem;
+    }
+
+    .option-chip.is-active {
+      border-color: var(--card-accent);
+      background: var(--card-soft);
+      color: var(--card-accent-strong);
+    }
+
+    .quick-add-row {
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .quick-chips {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .quick-chip {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 999px;
+      min-width: 44px;
+      padding: 7px 10px;
+      font-weight: 850;
+      font-size: 0.8rem;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .quick-chip:hover {
+      border-color: var(--card-accent);
+      color: var(--card-accent-strong);
+      background: var(--card-soft);
+      transform: translateY(-1px);
+    }
+
+    .quick-chip.is-active {
+      background: var(--card-accent);
+      border-color: var(--card-accent);
+      color: #ffffff;
+      box-shadow: 0 6px 14px rgba(15, 42, 33, 0.18);
+    }
+
+    .card-footer {
+      margin-top: 12px;
+      min-height: 36px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      justify-content: space-between;
+    }
+
+    .card-hint {
+      font-size: 0.73rem;
+      color: var(--muted);
+    }
+
+    .card-stepper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .stepper-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .stepper-btn:hover {
+      border-color: var(--card-accent);
+      background: var(--card-soft);
+    }
+
+    .stepper-value {
+      min-width: 22px;
+      text-align: center;
+      font-weight: 850;
+    }
+
+    .remove-mini {
+      border: 0;
+      background: transparent;
+      color: var(--danger);
+      font-size: 0.72rem;
+      font-weight: 760;
+      padding: 4px;
+    }
+
+    .other-options {
+      flex-basis: 100%;
+      font-size: 0.67rem;
+      color: var(--muted);
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 48px 18px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px dashed var(--line-strong);
+      border-radius: 20px;
+      color: var(--muted);
+    }
+
+    .empty-state .empty-icon {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .empty-state h3 {
+      margin: 0 0 6px;
+      color: var(--ink);
+    }
+
+    .empty-state p {
+      margin: 0 0 16px;
+      font-size: 0.86rem;
+    }
+
+    /* ========== REQUEST PANEL ========== */
+    .request-panel {
+      position: sticky;
+      top: 92px;
+      max-height: calc(100vh - 112px);
+      z-index: 2;
+    }
+
+    .request-panel-inner {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      max-height: inherit;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(15, 42, 33, 0.25) transparent;
+    }
+
+    .request-panel-inner::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .request-panel-inner::-webkit-scrollbar-thumb {
+      background: rgba(15, 42, 33, 0.2);
+      border-radius: 999px;
+    }
+
+    .panel-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .panel-heading h2 {
+      font-size: 1.5rem;
+      margin: 0;
+      letter-spacing: -0.035em;
+    }
+
+    .count-pill {
+      background: var(--ink);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.68rem;
+      font-weight: 820;
+      white-space: nowrap;
+    }
+
+    .pickup-control {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .pickup-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      border: 1px dashed rgba(15, 118, 110, 0.4);
+      background: #f8fcfa;
+      border-radius: 16px;
+      padding: 12px;
+      transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .pickup-toggle:hover {
+      border-style: solid;
+      background: #ffffff;
+    }
+
+    .pickup-toggle.is-active {
+      border-color: rgba(4, 120, 87, 0.45);
+      background: #ecf9f2;
+      box-shadow: inset 0 0 0 1px rgba(4, 120, 87, 0.1);
+    }
+
+    .pickup-toggle-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: #ffffff;
+      font-weight: 900;
+      flex: 0 0 auto;
+      box-shadow: 0 4px 10px rgba(15, 42, 33, 0.06);
+    }
+
+    .pickup-toggle-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .pickup-toggle-copy strong {
+      font-size: 0.85rem;
+    }
+
+    .pickup-toggle-copy small {
+      color: var(--muted);
+      font-size: 0.71rem;
+      line-height: 1.32;
+      margin-top: 2px;
+    }
+
+    .pickup-state {
+      margin-left: auto;
+      font-size: 0.63rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--store-strong);
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 5px 8px;
+      border: 1px solid var(--line);
+      flex: 0 0 auto;
+    }
+
+    .pickup-toggle.is-active .pickup-state {
+      background: var(--success);
+      color: #ffffff;
+      border-color: var(--success);
+    }
+
+    .pickup-detail {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(248, 251, 249, 0.92);
+    }
+
+    .pickup-detail.is-active {
+      border-color: rgba(4, 120, 87, 0.25);
+      background: #eefaf4;
+    }
+
+    .pickup-detail-top {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.8rem;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.12);
+      flex: 0 0 auto;
+    }
+
+    .pickup-detail p {
+      margin: 8px 0;
+      font-size: 0.77rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .pickup-detail address {
+      font-size: 0.77rem;
+      line-height: 1.52;
+      color: var(--ink);
+      background: #ffffff;
+      border-left: 3px solid var(--store);
+      padding: 8px 10px;
+      border-radius: 0 8px 8px 0;
+      margin: 8px 0;
+    }
+
+    .pickup-small {
+      font-size: 0.69rem !important;
+    }
+
+    .cart-items {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .empty-cart {
+      text-align: center;
+      border: 1px dashed var(--line-strong);
+      border-radius: 16px;
+      padding: 22px 12px;
+      background: #fafcfb;
+      color: var(--muted);
+    }
+
+    .empty-cart span {
+      font-size: 1.75rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .empty-cart p {
+      margin: 0;
+      font-size: 0.81rem;
+      line-height: 1.5;
+    }
+
+    .cart-group {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: 2px;
+    }
+
+    .cart-group:first-child {
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .cart-group-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .cart-group-total {
+      font-size: 0.79rem;
+      font-weight: 820;
+    }
+
+    .cart-lines {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .cart-line {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+
+    .cart-line-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--surface-soft);
+      flex: 0 0 auto;
+    }
+
+    .cart-line-body {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .cart-line-head {
+      display: flex;
+      gap: 6px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .cart-line-name {
+      font-size: 0.79rem;
+      font-weight: 790;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .variant-label {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .cart-line-meta {
+      font-size: 0.66rem;
+      color: var(--muted);
+      margin: 2px 0 6px;
+      line-height: 1.35;
+    }
+
+    .remove-button {
+      border: 0;
+      background: transparent;
+      color: var(--danger);
+      font-size: 0.64rem;
+      font-weight: 820;
+      padding: 2px 0;
+      white-space: nowrap;
+    }
+
+    .cart-line-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-stepper {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .qty-stepper button {
+      width: 26px;
+      height: 26px;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .qty-stepper button:hover {
+      background: var(--surface-soft);
+    }
+
+    .qty-stepper span {
+      min-width: 24px;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 850;
+    }
+
+    .cart-line-price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1px;
+      font-size: 0.67rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .cart-line-price strong {
+      font-size: 0.8rem;
+      color: var(--ink);
+    }
+
+    .cart-totals {
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      margin-bottom: 16px;
+    }
+
+    .total-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.79rem;
+      color: var(--muted);
+      padding: 4px 0;
+    }
+
+    .total-line--grand {
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-weight: 850;
+      border-top: 1px dashed var(--line-strong);
+      margin-top: 8px;
+      padding-top: 10px;
+      align-items: baseline;
+    }
+
+    .total-line--grand strong {
+      font-size: 1.3rem;
+      letter-spacing: -0.045em;
+      color: var(--store-strong);
+    }
+
+    .payment-note {
+      font-size: 0.67rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 8px 0 0;
+    }
+
+    .request-form {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .request-form h3 {
+      font-size: 1rem;
+      margin: 0 0 5px;
+      letter-spacing: -0.02em;
+    }
+
+    .form-hint {
+      font-size: 0.73rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-field--full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 0.71rem;
+      font-weight: 820;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .form-field label span {
+      color: var(--danger);
+    }
+
+    .form-field label small {
+      font-weight: 520;
+      color: var(--muted);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #ffffff;
+      padding: 10px 11px;
+      color: var(--ink);
+      font-size: 0.83rem;
+      outline: 0;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: rgba(15, 118, 110, 0.55);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+    }
+
+    .form-field input.is-invalid {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.08);
+    }
+
+    .field-error {
+      min-height: 14px;
+      font-size: 0.65rem;
+      color: var(--danger);
+      margin: 3px 0 0;
+    }
+
+    .form-error {
+      font-size: 0.72rem;
+      color: var(--danger);
+      background: #fff1f1;
+      border: 1px solid rgba(185, 28, 28, 0.16);
+      border-radius: 9px;
+      padding: 8px;
+      margin: 10px 0;
+      line-height: 1.4;
+    }
+
+    .form-error:empty {
+      display: none;
+    }
+
+    .panel-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .panel-actions button {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 8px;
+      font-size: 0.68rem;
+      font-weight: 760;
+      color: var(--ink);
+      transition: background 0.16s ease, border-color 0.16s ease;
+    }
+
+    .panel-actions button:hover {
+      background: var(--surface-soft);
+      border-color: var(--line-strong);
+    }
+
+    .owner-note {
+      margin-top: 14px;
+      padding: 11px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+    }
+
+    .owner-note span {
+      font-size: 0.61rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--store-strong);
+    }
+
+    .owner-note p {
+      margin: 4px 0 0;
+      font-size: 0.7rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .owner-note strong {
+      color: var(--ink);
+    }
+
+    .no-pay-note {
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-align: center;
+      margin: 12px 0 0;
+      line-height: 1.4;
+    }
+
+    /* ========== HOW IT WORKS ========== */
+    .how-section {
+      padding: 12px 0 54px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 8px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .how-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .step-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: var(--store-soft);
+      color: var(--store-strong);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .how-card:nth-child(2) .step-number {
+      background: var(--print-soft);
+      color: var(--print-strong);
+    }
+
+    .how-card:nth-child(3) .step-number {
+      background: #fef3c7;
+      color: var(--amber);
+    }
+
+    .how-card h3 {
+      margin: 0 0 7px;
+      font-size: 1.03rem;
+      letter-spacing: -0.02em;
+    }
+
+    .how-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.58;
+    }
+
+    /* ========== CONTACT ========== */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 16px;
+      padding-bottom: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-card--store {
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.97), rgba(9, 74, 68, 0.97));
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 24px 60px rgba(15, 118, 110, 0.22);
+    }
+
+    .contact-card--store .eyebrow {
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .contact-card--store h2 {
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .contact-card--store address {
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.65;
+      margin: 12px 0 18px;
+    }
+
+    .contact-card--store .button--ghost {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .contact-card h2 {
+      margin-bottom: 10px;
+    }
+
+    .contact-card > p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 9px;
+      font-size: 0.84rem;
+    }
+
+    .contact-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .contact-list li span:first-child {
+      color: var(--muted);
+      font-weight: 660;
+    }
+
+    .contact-list a {
+      font-weight: 720;
+      color: var(--store-strong);
+      text-decoration: none;
+      text-align: right;
+    }
+
+    .contact-list a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== FOOTER ========== */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.56);
+      padding: 30px 0;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .footer-brand .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      font-size: 0.83rem;
+    }
+
+    .footer-brand strong {
+      display: block;
+      color: var(--ink);
+      font-size: 0.9rem;
+      margin-bottom: 3px;
+    }
+
+    .footer-inner h4 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 5px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+      color: var(--store-strong);
+    }
+
+    /* ========== MOBILE CART BAR ========== */
+    .mobile-cart-bar {
+      display: none;
+    }
+
+    /* ========== DIALOG / SLIP ========== */
+    .slip-dialog {
+      border: 0;
+      border-radius: 24px;
+      padding: 0;
+      width: min(780px, calc(100% - 24px));
+      max-height: calc(100vh - 32px);
+      background: transparent;
+      color: var(--ink);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
+      overflow: visible;
+    }
+
+    .slip-dialog::backdrop {
+      background: rgba(9, 24, 20, 0.64);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .slip-dialog-inner {
+      background: #f8faf8;
+      border-radius: 24px;
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+      padding: 22px;
+    }
+
+    .slip-dialog-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 14px;
+    }
+
+    .slip-dialog-head h2 {
+      font-size: 1.35rem;
+      margin: 0;
+    }
+
+    .icon-button {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      font-size: 1.2rem;
+      color: var(--ink);
+      flex: 0 0 auto;
+    }
+
+    .slip-content {
+      display: grid;
+    }
+
+    .slip-paper {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .slip-brand {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--line-strong);
+    }
+
+    .slip-brand .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      font-size: 0.9rem;
+    }
+
+    .slip-brand h3 {
+      margin: 0 0 3px;
+      font-size: 1.05rem;
+    }
+
+    .slip-brand p {
+      margin: 0;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .slip-status {
+      margin-left: auto;
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: var(--store-soft);
+      color: var(--store-strong);
+      font-size: 0.61rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .slip-status.is-request {
+      background: #e7f9ef;
+      color: var(--success);
+    }
+
+    .slip-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .slip-meta-grid div {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .slip-meta-grid span,
+    .slip-client-grid span {
+      font-size: 0.64rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 760;
+    }
+
+    .slip-meta-grid strong {
+      font-size: 0.8rem;
+    }
+
+    .slip-block {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .slip-block h4 {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 7px;
+      color: var(--muted);
+    }
+
+    .slip-block p {
+      font-size: 0.8rem;
+      line-height: 1.55;
+      margin: 0 0 5px;
+    }
+
+    .slip-note {
+      font-size: 0.7rem !important;
+      color: var(--muted);
+    }
+
+    .slip-client-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .slip-client-grid p {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 0.8rem;
+    }
+
+    .slip-client-grid .slip-notes {
+      grid-column: 1 / -1;
+    }
+
+    .slip-items-section {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .slip-items-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .slip-item-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .slip-item-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 0.78rem;
+    }
+
+    .slip-item-list small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.66rem;
+      margin-top: 2px;
+    }
+
+    .slip-item-math {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      white-space: nowrap;
+      color: var(--muted);
+    }
+
+    .slip-item-math strong {
+      color: var(--ink);
+    }
+
+    .slip-empty {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .slip-totals {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      gap: 5px;
+    }
+
+    .slip-totals > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .slip-grand-total {
+      border-top: 1px dashed var(--line-strong);
+      padding-top: 8px;
+      margin-top: 4px;
+      color: var(--ink) !important;
+      font-weight: 820;
+      font-size: 0.9rem !important;
+    }
+
+    .slip-grand-total strong {
+      font-size: 1.1rem;
+    }
+
+    .slip-status-note {
+      background: #fff7ed;
+      color: #92400e;
+      padding: 10px;
+      border: 1px solid #fed7aa;
+      border-radius: 10px;
+      font-size: 0.73rem;
+      line-height: 1.5;
+      margin: 14px 0 0;
+    }
+
+    .slip-footer {
+      margin-top: 14px;
+      font-size: 0.68rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .slip-footer p {
+      margin: 2px 0;
+    }
+
+    .slip-actions {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px 0 2px;
+      margin-top: 16px;
+      background: linear-gradient(180deg, rgba(248, 250, 248, 0), #f8faf8 28%);
+    }
+
+    .slip-actions .button,
+    .slip-actions button {
+      padding: 9px 12px;
+      font-size: 0.75rem;
+      border-radius: 999px;
+    }
+
+    .slip-actions button {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      font-weight: 750;
+      color: var(--ink);
+    }
+
+    /* ========== TOAST ========== */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 20px);
+      background: var(--ink);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.79rem;
+      font-weight: 650;
+      box-shadow: 0 16px 40px rgba(10, 30, 24, 0.25);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1000;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      max-width: calc(100% - 32px);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* ========== FOCUS ========== */
+    :focus-visible {
+      outline: 3px solid rgba(15, 118, 110, 0.38);
+      outline-offset: 2px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1180px) {
+      .primary-nav {
+        display: none;
+      }
+
+      .shop-layout {
+        grid-template-columns: minmax(0, 1fr) 360px;
+      }
+
+      .hero {
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .shop-layout {
+        grid-template-columns: minmax(0, 1fr) 340px;
+      }
+
+      .feature-band {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 940px) {
+      body {
+        padding-bottom: 84px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 42px;
+      }
+
+      .hero-card {
+        max-width: 640px;
+      }
+
+      .shop-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .request-panel {
+        position: static;
+        max-height: none;
+      }
+
+      .request-panel-inner {
+        max-height: none;
+        overflow: visible;
+      }
+
+      .catalog-section {
+        padding: 20px;
+      }
+
+      .mobile-cart-bar.is-visible {
+        display: flex;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 80;
+        background: var(--ink);
+        color: #ffffff;
+        border-radius: 18px;
+        padding: 10px 12px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        box-shadow: 0 14px 30px rgba(10, 30, 24, 0.3);
+      }
+
+      .mobile-cart-copy {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.7rem;
+        line-height: 1.2;
+      }
+
+      .mobile-cart-copy strong {
+        font-size: 1rem;
+      }
+
+      .mobile-cart-bar button {
+        border: 0;
+        background: #ffffff;
+        color: var(--ink);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-weight: 820;
+        font-size: 0.77rem;
+      }
+
+      .toast {
+        bottom: 90px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .header-inner {
+        width: calc(100% - 24px);
+        min-height: 68px;
+      }
+
+      .brand-copy small {
+        display: none;
+      }
+
+      .brand-copy strong {
+        font-size: 0.84rem;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 13px;
+        font-size: 0.86rem;
+      }
+
+      .header-actions .text-action {
+        display: none;
+      }
+
+      .header-actions .button--whatsapp {
+        padding: 9px 11px;
+        font-size: 0.77rem;
+      }
+
+      .header-request {
+        padding: 7px 8px 7px 10px;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.1rem, 10vw, 3.25rem);
+      }
+
+      .lead {
+        font-size: 1rem;
+      }
+
+      .catalog-heading {
+        flex-direction: column;
+      }
+
+      .category-tabs {
+        width: 100%;
+      }
+
+      .section-tab {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-band {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-section {
+        grid-template-columns: 1fr;
+      }
+
+      .how-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-field--full {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: calc(100% - 20px);
+      }
+
+      .header-inner {
+        width: calc(100% - 16px);
+      }
+
+      .brand-copy strong {
+        max-width: 164px;
+      }
+
+      .header-request span:first-child {
+        display: none;
+      }
+
+      .header-request {
+        padding: 7px;
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        justify-content: center;
+      }
+
+      .header-request-count {
+        min-width: 20px;
+        height: 20px;
+        font-size: 0.67rem;
+      }
+
+      .button {
+        padding: 11px 14px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions .button,
+      .hero-actions .pickup-cta {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .feature-band {
+        grid-template-columns: 1fr;
+      }
+
+      .category-tabs {
+        flex-direction: column;
+        border-radius: 18px;
+      }
+
+      .section-tab {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .catalog-section {
+        border-radius: 22px;
+        padding: 16px;
+      }
+
+      .product-card {
+        border-radius: 18px;
+      }
+
+      .panel-heading h2 {
+        font-size: 1.3rem;
+      }
+
+      .request-panel-inner {
+        padding: 16px;
+        border-radius: 22px;
+      }
+
+      .slip-meta-grid,
+      .slip-client-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .slip-client-grid .slip-notes {
+        grid-column: auto;
+      }
+
+      .slip-paper {
+        padding: 16px;
+      }
+
+      .slip-brand {
+        flex-wrap: wrap;
+      }
+
+      .slip-status {
+        margin-left: 0;
+      }
+    }
+
+    /* ========== PRINT ========== */
+    @media print {
+      html,
+      body {
+        background: #ffffff !important;
+      }
+
+      .page-backdrop,
+      .site-header,
+      main,
+      .site-footer,
+      .mobile-cart-bar,
+      .toast,
+      .slip-dialog-head,
+      .slip-actions {
+        display: none !important;
+      }
+
+      .slip-dialog {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+
+      .slip-dialog::backdrop {
+        display: none !important;
+      }
+
+      .slip-dialog-inner {
+        max-height: none !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        background: #ffffff !important;
+      }
+
+      .slip-paper {
+        border: 0 !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-backdrop" aria-hidden="true"></div>
+  <div id="liveRegion" class="visually-hidden" role="status" aria-live="polite"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Kumar General Store and Printing Shop home">
+        <span class="brand-mark" aria-hidden="true">KG</span>
+        <span class="brand-copy">
+          <strong>Kumar General Store <span>&amp;</span> Printing Shop</strong>
+          <small>Owner: Rishabh Kushwaha • Mithapur, Patna</small>
+        </span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <button class="nav-button is-current" type="button" data-action="tab" data-tab="general">General Store</button>
+        <button class="nav-button" type="button" data-action="tab" data-tab="printing">Printing</button>
+        <a class="nav-button" href="#pickup">Pickup</a>
+        <a class="nav-button" href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="text-action" href="tel:+918210647700">Call</a>
+        <a
+          class="button button--whatsapp button--small"
+          href="https://wa.me/918210647700?text=Hello%20Rishabh%2C%20I%20have%20a%20pickup%20request%20from%20Kumar%20General%20Store%20%26%20Printing%20Shop."
+          target="_blank"
+          rel="noopener"
+        >WhatsApp</a>
+        <button class="header-request" type="button" data-action="scroll-to-request" aria-label="Open your pickup request summary">
+          <span>Request</span>
+          <span class="header-request-count" id="headerRequestCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          Pickup-only general store + print desk
+        </p>
+        <h1>Essentials and print jobs, <span>ready for pickup.</span></h1>
+        <p class="lead">
+          Browse <strong>General Store</strong> items and <strong>Printing Services</strong> in clearly separated sections.
+          Add quantities with Quick-Add chips, then prepare a pickup request for Rishabh Kushwaha.
+          Home delivery is not available.
+        </p>
+        <div class="hero-actions">
+          <button class="button button--primary" type="button" data-action="tab" data-tab="general">Shop General Store</button>
+          <button class="button button--print" type="button" data-action="tab" data-tab="printing">Explore Printing</button>
+          <button class="pickup-cta" type="button" data-action="request-pickup">
+            <span aria-hidden="true">🚫</span> No Delivery / Request Pickup
+          </button>
+        </div>
+        <div class="assurance-row" aria-label="Shop highlights">
+          <span>No delivery required</span>
+          <span>Quick-add chips</span>
+          <span>Clear pickup summary</span>
+          <span>Call or WhatsApp</span>
+        </div>
+      </div>
+
+      <aside class="hero-card" id="pickup" aria-label="Store pickup information">
+        <div class="hero-card-top">
+          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> Pickup only</span>
+          <span class="owner-chip">Owner: Rishabh Kushwaha</span>
+        </div>
+        <h2>No home delivery</h2>
+        <p>
+          Tap <strong>No Delivery / Request Pickup</strong> in the request panel to switch into the pickup flow.
+          No delivery address is asked or needed.
+        </p>
+        <div class="hero-address">
+          <span class="address-icon" aria-hidden="true">📍</span>
+          <address>
+            New Bengali Tola, Bustand Rd,<br />
+            opp. NIFT College, Mithapur,<br />
+            Patna, Bihar, India. PIN 800001.
+          </address>
+        </div>
+        <div class="hero-card-actions">
+          <a class="button button--primary button--small" href="tel:+918210647700">Call store</a>
+          <a
+            class="button button--ghost button--small"
+            href="https://www.google.com/maps/search/?api=1&query=New%20Bengali%20Tola%2C%20Bustand%20Rd%2C%20opp.%20NIFT%20College%2C%20Mithapur%2C%20Patna%2C%20Bihar%20800001"
+            target="_blank"
+            rel="noopener"
+          >Directions</a>
+        </div>
+        <div class="contact-mini">
+          <a href="mailto:rishabhkushwahaji@gmail.com">rishabhkushwahaji@gmail.com</a>
+          <a href="https://wa.me/918210647700" target="_blank" rel="noopener">WhatsApp: +91 82106 47700</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="feature-band shell" aria-label="Shop highlights">
+      <div class="feature-item">
+        <span class="feature-icon" aria-hidden="true">🏬</span>
+        <div>
+          <strong>Pickup only</strong>
+          <small>No home delivery. Prepare your request for store pickup.</small>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon" aria-hidden="true">⚡</span>
+        <div>
+          <strong>Quick-Add chips</strong>
+          <small>Tap +1, +2, +5 or copy quantities instantly.</small>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon" aria-hidden="true">🖨️</span>
+        <div>
+          <strong>Separate printing desk</strong>
+          <small>Copies, photos, lamination, binding, cards and more.</small>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon" aria-hidden="true">📋</span>
+        <div>
+          <strong>Clear order slip</strong>
+          <small>Copy, download, print or send the summary on WhatsApp.</small>
+        </div>
+      </div>
+    </section>
+
+    <div class="shop-layout shell">
+      <section class="catalog-section theme-general" id="catalog" aria-labelledby="catalogTitle">
+        <div class="catalog-heading">
+          <div class="heading-copy">
+            <div class="section-badge" id="catalogBadge">
+              <span class="badge badge--store">General Store</span>
+            </div>
+            <h2 id="catalogTitle">General Store</h2>
+            <p id="catalogDescription">
+              Practical everyday items from the shop. Use Quick-Add chips to build your pickup request.
+            </p>
+          </div>
+
+          <div class="category-tabs" id="catalogTabs" role="tablist" aria-label="Choose shop section">
+            <button
+              class="section-tab is-active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="productGrid"
+              data-action="tab"
+              data-tab="general"
+            >
+              General Store
+              <span>Groceries + essentials</span>
+            </button>
+            <button
+              class="section-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="productGrid"
+              data-action="tab"
+              data-tab="printing"
+            >
+              Printing
+              <span>Copies, cards + binding</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="catalog-toolbar">
+          <label class="search-field">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <span class="visually-hidden">Search current section</span>
+            <input id="searchInput" type="search" placeholder="Search general store items…" autocomplete="off" />
+            <button class="search-clear" id="clearSearch" type="button" data-action="clear-search" hidden aria-label="Clear search">×</button>
+          </label>
+
+          <div class="results-row">
+            <div id="categoryFilters" class="filter-chips" aria-label="Filter by category"></div>
+            <p id="resultsCount" class="results-count"></p>
+          </div>
+        </div>
+
+        <div id="productGrid" class="product-grid" role="tabpanel" aria-live="polite"></div>
+      </section>
+
+      <aside class="request-panel" id="requestPanel" aria-labelledby="requestTitle">
+        <div class="request-panel-inner">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow eyebrow--small">Pickup request</p>
+              <h2 id="requestTitle">Your selection</h2>
+            </div>
+            <span class="count-pill" id="cartCountPill">0 items</span>
+          </div>
+
+          <div id="pickupControl" class="pickup-control"></div>
+          <div id="cartItems" class="cart-items"></div>
+          <div id="cartTotals" class="cart-totals"></div>
+
+          <form id="requestForm" class="request-form" novalidate>
+            <h3>Customer details</h3>
+            <p class="form-hint">
+              No home address needed. Name and email are required for the pickup request.
+            </p>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="customerName">Your name <span>*</span></label>
+                <input
+                  id="customerName"
+                  data-customer-field="name"
+                  autocomplete="name"
+                  placeholder="e.g. Rishabh Kushwaha"
+                  aria-describedby="nameError"
+                  required
+                />
+                <p id="nameError" class="field-error" role="alert"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="customerEmail">Email <span>*</span></label>
+                <input
+                  id="customerEmail"
+                  data-customer-field="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                  aria-describedby="emailError"
+                  required
+                />
+                <p id="emailError" class="field-error" role="alert"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="customerPhone">Phone / WhatsApp <small>(optional)</small></label>
+                <input
+                  id="customerPhone"
+                  data-customer-field="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="For pickup confirmation"
+                  aria-describedby="phoneError"
+                />
+                <p id="phoneError" class="field-error" role="alert"></p>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label for="customerNotes">Notes for Rishabh <small>(optional)</small></label>
+                <textarea
+                  id="customerNotes"
+                  data-customer-field="notes"
+                  rows="2"
+                  placeholder="e.g. black & white copies, glossy visiting cards, or an alternate pickup time"
+                ></textarea>
+              </div>
+            </div>
+
+            <p id="formError" class="form-error" role="alert"></p>
+
+            <button class="button button--primary button--full" id="submitRequest" type="submit">
+              Generate pickup request
+            </button>
+          </form>
+
+          <div class="panel-actions">
+            <button type="button" data-action="preview-slip">Preview slip</button>
+            <button type="button" data-action="copy-current">Copy summary</button>
+            <button type="button" data-action="download-current">Download .txt</button>
+            <button type="button" data-action="clear-all">Clear / reset</button>
+          </div>
+
+          <div class="owner-note">
+            <span>Owner / creator</span>
+            <p>
+              <strong>Rishabh Kushwaha</strong><br />
+              Email: rishabhkushwahaji@gmail.com<br />
+              Phone: 082106 47700
+            </p>
+          </div>
+
+          <p class="no-pay-note">
+            No online payment is collected. The store will confirm item availability and the final amount at pickup.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <section class="how-section shell" aria-labelledby="howTitle">
+      <div class="section-heading">
+        <p class="eyebrow" style="justify-content:center;">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          How it works
+        </p>
+        <h2 id="howTitle">A clean pickup request in three steps</h2>
+        <p>
+          Browse both sections, add quantities with quick chips, and generate a request summary to send to the shop.
+        </p>
+      </div>
+
+      <div class="how-grid">
+        <article class="how-card">
+          <div class="step-number" aria-hidden="true">1</div>
+          <h3>Browse General Store or Printing</h3>
+          <p>
+            Use the two section tabs, search, and category filters. General Store items and Printing Services
+            have distinct colours and badges so they never get mixed up.
+          </p>
+        </article>
+        <article class="how-card">
+          <div class="step-number" aria-hidden="true">2</div>
+          <h3>Quick-add and review</h3>
+          <p>
+            Tap a +1, +2, +5 or copy/page quantity chip. Increase, decrease, or remove items in the request panel.
+            Totals update in ₹ immediately.
+          </p>
+        </article>
+        <article class="how-card">
+          <div class="step-number" aria-hidden="true">3</div>
+          <h3>Select pickup and prepare slip</h3>
+          <p>
+            Click <strong>No Delivery / Request Pickup</strong>, add your name and email, then generate the slip.
+            Copy it, download it, print it, or send it on WhatsApp.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section shell" id="contact" aria-labelledby="contactTitle">
+      <div class="contact-card contact-card--store">
+        <p class="eyebrow">Store pickup &amp; contact</p>
+        <h2 id="contactTitle">Kumar General Store &amp; Printing Shop</h2>
+        <address>
+          New Bengali Tola, Bustand Rd,<br />
+          opp. NIFT College, Mithapur,<br />
+          Patna, Bihar, India.<br />
+          PIN 800001.
+        </address>
+        <div class="contact-actions">
+          <a class="button button--ghost button--small" href="tel:+918210647700">Call 082106 47700</a>
+          <a
+            class="button button--whatsapp button--small"
+            href="https://wa.me/918210647700?text=Hello%20Rishabh%2C%20I%20want%20to%20make%20a%20pickup%20request."
+            target="_blank"
+            rel="noopener"
+          >WhatsApp</a>
+          <a
+            class="button button--ghost button--small"
+            href="https://www.google.com/maps/search/?api=1&query=New%20Bengali%20Tola%2C%20Bustand%20Rd%2C%20opp.%20NIFT%20College%2C%20Mithapur%2C%20Patna%2C%20Bihar%20800001"
+            target="_blank"
+            rel="noopener"
+          >Open Maps</a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <p class="eyebrow">Owner / creator</p>
+        <h2>Rishabh Kushwaha</h2>
+        <p>
+          For order confirmation, availability, printing specifications, or pickup coordination:
+        </p>
+        <ul class="contact-list">
+          <li><span>Email</span><a href="mailto:rishabhkushwahaji@gmail.com">rishabhkushwahaji@gmail.com</a></li>
+          <li><span>Phone</span><a href="tel:+918210647700">082106 47700</a></li>
+          <li><span>WhatsApp</span><a href="https://wa.me/918210647700" target="_blank" rel="noopener">+91 82106 47700</a></li>
+          <li><span>Location</span><span>Mithapur, Patna, Bihar, India</span></li>
+          <li><span>Mode</span><span>Pickup only — no home delivery</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">KG</span>
+        <div>
+          <strong>Kumar General Store &amp; Printing Shop</strong>
+          <span>Owner: Rishabh Kushwaha</span><br />
+          <span>Pickup only • Mithapur, Patna, Bihar</span>
+        </div>
+      </div>
+
+      <div>
+        <h4>Pickup address</h4>
+        <div>
+          New Bengali Tola, Bustand Rd,<br />
+          opp. NIFT College, Mithapur,<br />
+          Patna, Bihar 800001
+        </div>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-links">
+          <a href="tel:+918210647700">Phone: 082106 47700</a>
+          <a href="https://wa.me/918210647700" target="_blank" rel="noopener">WhatsApp: +91 82106 47700</a>
+          <a href="mailto:rishabhkushwahaji@gmail.com">rishabhkushwahaji@gmail.com</a>
+          <a href="#pickup">Pickup information</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-cart-bar" id="mobileBar" aria-label="Pickup request quick view">
+    <div class="mobile-cart-copy">
+      <span id="mobileCount">0 items</span>
+      <strong id="mobileTotal">₹0</strong>
+    </div>
+    <button type="button" data-action="scroll-to-request">Review request</button>
+  </div>
+
+  <dialog id="slipDialog" class="slip-dialog" aria-labelledby="slipDialogTitle">
+    <div class="slip-dialog-inner">
+      <div class="slip-dialog-head">
+        <div>
+          <p class="eyebrow eyebrow--small">Order slip</p>
+          <h2 id="slipDialogTitle">Pickup request / order summary</h2>
+        </div>
+        <button class="icon-button" type="button" data-action="close-slip" aria-label="Close slip">×</button>
+      </div>
+
+      <div id="slipContent" class="slip-content"></div>
+
+      <div class="slip-actions">
+        <button type="button" class="button button--ghost" data-action="copy-slip">Copy summary</button>
+        <button type="button" class="button button--ghost" data-action="download-slip">Download .txt</button>
+        <a
+          id="whatsappSlipLink"
+          class="button button--whatsapp"
+          href="#"
+          target="_blank"
+          rel="noopener"
+        >Send on WhatsApp</a>
+        <a id="emailSlipLink" class="button button--ghost" href="#">Email store</a>
+        <button type="button" class="button button--ghost" data-action="print-slip">Print</button>
+        <button type="button" class="button button--ghost" data-action="close-slip">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      /* =========================================================
+         STORE CONFIGURATION
+         PIN 800001 is used for Mithapur, Patna. Change it here and
+         in the visible address blocks if your exact PIN differs.
+         ========================================================= */
+      const STORE = {
+        name: "Kumar General Store & Printing Shop",
+        owner: "Rishabh Kushwaha",
+        email: "rishabhkushwahaji@gmail.com",
+        phoneDisplay: "082106 47700",
+        phoneTel: "+918210647700",
+        whatsapp: "918210647700",
+        whatsappDisplay: "+91 82106 47700",
+        address: "New Bengali Tola, Bustand Rd, opp. NIFT College, Mithapur, Patna, Bihar",
+        pin: "800001",
+        locality: "Mithapur, Patna, Bihar, India",
+        currency: "₹"
+      };
+
+      /* =========================================================
+         PRODUCT CATALOG
+         ========================================================= */
+      const RAW_PRODUCTS = [
+        /* GENERAL STORE */
+        {
+          id: "g-atta",
+          type: "general",
+          category: "Grocery & Daily",
+          name: "Aashirvaad Atta",
+          meta: "5 kg bag • whole wheat flour",
+          price: 245,
+          unit: "bag",
+          icon: "🌾",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-rice",
+          type: "general",
+          category: "Grocery & Daily",
+          name: "Basmati Rice",
+          meta: "5 kg pack • long grain",
+          price: 540,
+          unit: "pack",
+          icon: "🍚",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-toor-dal",
+          type: "general",
+          category: "Grocery & Daily",
+          name: "Toor Dal",
+          meta: "1 kg • unpolished",
+          price: 165,
+          unit: "kg",
+          icon: "🫘",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-sugar",
+          type: "general",
+          category: "Grocery & Daily",
+          name: "Sugar",
+          meta: "1 kg • clean crystals",
+          price: 48,
+          unit: "kg",
+          icon: "🍬",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-salt",
+          type: "general",
+          category: "Grocery & Daily",
+          name: "Tata Salt",
+          meta: "1 kg • iodised",
+          price: 28,
+          unit: "pack",
+          icon: "🧂",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-oil",
+          type: "general",
+          category: "Grocery & Daily",
+          name: "Fortune Sunflower Oil",
+          meta: "1 L pouch",
+          price: 145,
+          unit: "pouch",
+          icon: "🌻",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-milk",
+          type: "general",
+          category: "Grocery & Daily",
+          name: "Amul Taaza Milk",
+          meta: "1 L tetra pack",
+          price: 58,
+          unit: "pack",
+          icon: "🥛",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-tea",
+          type: "general",
+          category: "Grocery & Daily",
+          name: "Tata Tea Gold",
+          meta: "250 g pack",
+          price: 145,
+          unit: "pack",
+          icon: "🍵",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-parle-g",
+          type: "general",
+          category: "Snacks & Drinks",
+          name: "Parle-G Biscuits",
+          meta: "800 g family pack",
+          price: 90,
+          unit: "pack",
+          icon: "🍪",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-bhujia",
+          type: "general",
+          category: "Snacks & Drinks",
+          name: "Haldiram Aloo Bhujia",
+          meta: "200 g pack",
+          price: 55,
+          unit: "pack",
+          icon: "🥨",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-water",
+          type: "general",
+          category: "Snacks & Drinks",
+          name: "Bisleri Water",
+          meta: "1 L bottle",
+          price: 20,
+          unit: "bottle",
+          icon: "💧",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-cola",
+          type: "general",
+          category: "Snacks & Drinks",
+          name: "Coca-Cola",
+          meta: "750 ml bottle",
+          price: 40,
+          unit: "bottle",
+          icon: "🥤",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-maggi",
+          type: "general",
+          category: "Snacks & Drinks",
+          name: "Maggi Noodles",
+          meta: "4-pack bundle",
+          price: 60,
+          unit: "pack",
+          icon: "🍜",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-lays",
+          type: "general",
+          category: "Snacks & Drinks",
+          name: "Lay's Classic Salted",
+          meta: "52 g pack",
+          price: 20,
+          unit: "pack",
+          icon: "🥔",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-colgate",
+          type: "general",
+          category: "Home & Personal",
+          name: "Colgate Strong Teeth",
+          meta: "200 g toothpaste",
+          price: 110,
+          unit: "tube",
+          icon: "🪥",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-lifebuoy",
+          type: "general",
+          category: "Home & Personal",
+          name: "Lifebuoy Soap",
+          meta: "3-pack • bath soap",
+          price: 75,
+          unit: "pack",
+          icon: "🧼",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-surf",
+          type: "general",
+          category: "Home & Personal",
+          name: "Surf Excel Easy Wash",
+          meta: "1 kg detergent powder",
+          price: 140,
+          unit: "pack",
+          icon: "🧺",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-dettol",
+          type: "general",
+          category: "Home & Personal",
+          name: "Dettol Handwash",
+          meta: "200 ml pump bottle",
+          price: 99,
+          unit: "bottle",
+          icon: "🧴",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-vim",
+          type: "general",
+          category: "Home & Personal",
+          name: "Vim Dishwash Bar",
+          meta: "200 g bar",
+          price: 35,
+          unit: "bar",
+          icon: "🧽",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-clinic",
+          type: "general",
+          category: "Home & Personal",
+          name: "Clinic Plus Shampoo",
+          meta: "175 ml bottle",
+          price: 85,
+          unit: "bottle",
+          icon: "🚿",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-notebook",
+          type: "general",
+          category: "School & Stationery",
+          name: "Classmate Notebook",
+          meta: "A4 • 120 pages",
+          price: 60,
+          unit: "notebook",
+          icon: "📓",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-pens",
+          type: "general",
+          category: "School & Stationery",
+          name: "Cello Ball Pens",
+          meta: "pack of 5 • blue",
+          price: 50,
+          unit: "pack",
+          icon: "🖊️",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-pencils",
+          type: "general",
+          category: "School & Stationery",
+          name: "Apsara Pencils",
+          meta: "pack of 10",
+          price: 40,
+          unit: "pack",
+          icon: "✏️",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-glue",
+          type: "general",
+          category: "School & Stationery",
+          name: "Fevistik Glue Stick",
+          meta: "8 g • school glue",
+          price: 25,
+          unit: "stick",
+          icon: "📎",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-chart",
+          type: "general",
+          category: "School & Stationery",
+          name: "Chart Paper",
+          meta: "assorted colour • 1 sheet",
+          price: 15,
+          unit: "sheet",
+          icon: "📄",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "g-stapler",
+          type: "general",
+          category: "School & Stationery",
+          name: "Kangaro Stapler",
+          meta: "small • includes staples",
+          price: 85,
+          unit: "piece",
+          icon: "📌",
+          quick: [1, 2, 5]
+        },
+
+        /* PRINTING SERVICES */
+        {
+          id: "p-bw-copy",
+          type: "printing",
+          category: "Photocopy & Print",
+          name: "B&W Photocopy",
+          meta: "A4 • single side • per page",
+          price: 2,
+          unit: "page",
+          icon: "⚫",
+          quick: [1, 10, 50]
+        },
+        {
+          id: "p-bw-duplex",
+          type: "printing",
+          category: "Photocopy & Print",
+          name: "B&W Duplex Photocopy",
+          meta: "A4 • both sides • per page",
+          price: 3,
+          unit: "page",
+          icon: "⚫",
+          quick: [1, 10, 50]
+        },
+        {
+          id: "p-colour-copy",
+          type: "printing",
+          category: "Photocopy & Print",
+          name: "Colour Photocopy",
+          meta: "A4 • colour • per page",
+          price: 10,
+          unit: "page",
+          icon: "🌈",
+          quick: [1, 5, 10]
+        },
+        {
+          id: "p-bw-print",
+          type: "printing",
+          category: "Photocopy & Print",
+          name: "B&W Document Printing",
+          meta: "A4 • per page",
+          price: 5,
+          unit: "page",
+          icon: "🖨️",
+          quick: [1, 5, 10]
+        },
+        {
+          id: "p-colour-print",
+          type: "printing",
+          category: "Photocopy & Print",
+          name: "Colour Document Printing",
+          meta: "A4 • colour • per page",
+          price: 15,
+          unit: "page",
+          icon: "🎨",
+          quick: [1, 5, 10]
+        },
+        {
+          id: "p-certificate",
+          type: "printing",
+          category: "Photocopy & Print",
+          name: "Certificate Printing",
+          meta: "A4 • per certificate",
+          price: 10,
+          unit: "certificate",
+          icon: "🏅",
+          quick: [1, 5, 10]
+        },
+        {
+          id: "p-photo-print",
+          type: "printing",
+          category: "Photos & Lamination",
+          name: "Photo Print",
+          meta: "4 × 6 inch • per print",
+          price: 15,
+          unit: "print",
+          icon: "🖼️",
+          quick: [1, 5, 10]
+        },
+        {
+          id: "p-passport",
+          type: "printing",
+          category: "Photos & Lamination",
+          name: "Passport Size Photos",
+          meta: "8 copies • per set",
+          price: 80,
+          unit: "set",
+          icon: "📸",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "p-lam-a4",
+          type: "printing",
+          category: "Photos & Lamination",
+          name: "A4 Lamination",
+          meta: "per sheet",
+          price: 40,
+          unit: "sheet",
+          icon: "🪪",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "p-lam-id",
+          type: "printing",
+          category: "Photos & Lamination",
+          name: "ID Card Lamination",
+          meta: "per card",
+          price: 30,
+          unit: "card",
+          icon: "🆔",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "p-spiral",
+          type: "printing",
+          category: "Binding & Finishing",
+          name: "Spiral Binding",
+          meta: "up to 100 pages • per book",
+          price: 80,
+          unit: "book",
+          icon: "📚",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "p-thesis",
+          type: "printing",
+          category: "Binding & Finishing",
+          name: "Thesis / Project Hard Binding",
+          meta: "hard cover • per book",
+          price: 450,
+          unit: "book",
+          icon: "📕",
+          quick: [1, 2, 3]
+        },
+        {
+          id: "p-a4-paper",
+          type: "printing",
+          category: "Paper & Supplies",
+          name: "A4 Paper 75 GSM",
+          meta: "per sheet",
+          price: 3,
+          unit: "sheet",
+          icon: "📄",
+          quick: [10, 50, 100]
+        },
+        {
+          id: "p-poster-a3",
+          type: "printing",
+          category: "Large Format",
+          name: "Colour Poster A3",
+          meta: "per sheet • colour",
+          price: 40,
+          unit: "sheet",
+          icon: "🖼️",
+          quick: [1, 2, 5]
+        },
+        {
+          id: "p-scan",
+          type: "printing",
+          category: "Digital Services",
+          name: "Document Scanning",
+          meta: "per page • email/WhatsApp copy",
+          price: 5,
+          unit: "page",
+          icon: "📠",
+          quick: [1, 5, 10]
+        },
+        {
+          id: "p-email-print",
+          type: "printing",
+          category: "Digital Services",
+          name: "WhatsApp / Email Print",
+          meta: "per page • print from your file",
+          price: 10,
+          unit: "page",
+          icon: "📲",
+          quick: [1, 5, 10]
+        },
+        {
+          id: "p-visiting-cards",
+          type: "printing",
+          category: "Design & Cards",
+          name: "Visiting Cards",
+          meta: "100 cards • choose finish",
+          price: 300,
+          unit: "pack",
+          icon: "💼",
+          quick: [1, 2, 5],
+          variants: [
+            { id: "matte", label: "Matte", price: 300 },
+            { id: "gloss", label: "Gloss", price: 350 },
+            { id: "premium", label: "Premium", price: 450 }
+          ]
+        },
+        {
+          id: "p-invitation",
+          type: "printing",
+          category: "Design & Cards",
+          name: "Invitation Card Printing",
+          meta: "per card • choose finish",
+          price: 25,
+          unit: "card",
+          icon: "💌",
+          quick: [10, 25, 50],
+          variants: [
+            { id: "standard", label: "Standard", price: 25 },
+            { id: "premium", label: "Premium", price: 45 },
+            { id: "foil", label: "Foil", price: 70 }
+          ]
+        },
+        {
+          id: "p-sticker",
+          type: "printing",
+          category: "Design & Cards",
+          name: "Vinyl Sticker Print",
+          meta: "A4 sheet • choose finish",
+          price: 50,
+          unit: "sheet",
+          icon: "🏷️",
+          quick: [1, 5, 10],
+          variants: [
+            { id: "matte", label: "Matte", price: 50 },
+            { id: "glossy", label: "Glossy", price: 60 },
+            { id: "transparent", label: "Transparent", price: 80 }
+          ]
+        }
+      ];
+
+      const PRODUCTS = RAW_PRODUCTS.map((product) => {
+        const variants = Array.isArray(product.variants) && product.variants.length
+          ? product.variants.map((variant) => ({
+              id: variant.id,
+              label: variant.label || "",
+              price: Number(variant.price)
+            }))
+          : [{ id: "default", label: "", price: Number(product.price) }];
+
+        return {
+          ...product,
+          price: Number(product.price),
+          quick: Array.isArray(product.quick) && product.quick.length
+            ? product.quick.map(Number)
+            : [1, 2, 5],
+          variants,
+          unit: product.unit || "item"
+        };
+      });
+
+      const PRODUCT_MAP = new Map(PRODUCTS.map((product) => [product.id, product]));
+
+      const state = {
+        activeTab: "general",
+        category: "all",
+        search: "",
+        selectedVariants: {},
+        cart: {},
+        lastQuick: {},
+        pickupConfirmed: false,
+        customer: {
+          name: "",
+          email: "",
+          phone: "",
+          notes: ""
+        },
+        submittedAt: null,
+        requestRef: "",
+        currentSlipText: "",
+        currentSlipRef: "",
+        slipMode: "draft"
+      };
+
+      let toastTimer = null;
+
+      /* =========================================================
+         GENERAL HELPERS
+         ========================================================= */
+      function makeLineKey(productId, variantId) {
+        return `${productId}::${variantId}`;
+      }
+
+      function formatINR(value) {
+        return `₹${Number(value || 0).toLocaleString("en-IN")}`;
+      }
+
+      function formatDateTime(date = new Date()) {
+        try {
+          return new Intl.DateTimeFormat("en-IN", {
+            dateStyle: "medium",
+            timeStyle: "short"
+          }).format(date);
+        } catch (error) {
+          return date.toLocaleString();
+        }
+      }
+
+      function escapeHTML(value) {
+        const map = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        };
+        return String(value ?? "").replace(/[&<>"']/g, (char) => map[char]);
+      }
+
+      function getSelectedVariantId(productId) {
+        const product = PRODUCT_MAP.get(productId);
+        if (!product) return "";
+
+        const selected = state.selectedVariants[productId];
+        if (selected && product.variants.some((variant) => variant.id === selected)) {
+          return selected;
+        }
+        return product.variants[0].id;
+      }
+
+      function getProductQty(productId) {
+        return Object.values(state.cart).reduce((sum, line) => {
+          return line.productId === productId ? sum + line.qty : sum;
+        }, 0);
+      }
+
+      function getCartItems() {
+        const items = [];
+
+        Object.entries(state.cart).forEach(([key, line]) => {
+          if (!line || line.qty <= 0) return;
+
+          const product = PRODUCT_MAP.get(line.productId);
+          if (!product) return;
+
+          const variant =
+            product.variants.find((entry) => entry.id === line.variantId) ||
+            product.variants[0];
+
+          items.push({
+            key,
+            product,
+            variant,
+            qty: line.qty,
+            unitPrice: variant.price,
+            lineTotal: variant.price * line.qty,
+            type: product.type
+          });
+        });
+
+        const typeOrder = { general: 0, printing: 1 };
+
+        items.sort((a, b) => {
+          const typeDifference = typeOrder[a.type] - typeOrder[b.type];
+          if (typeDifference !== 0) return typeDifference;
+
+          const nameDifference = a.product.name.localeCompare(b.product.name);
+          if (nameDifference !== 0) return nameDifference;
+
+          return (a.variant.label || "").localeCompare(b.variant.label || "");
+        });
+
+        return items;
+      }
+
+      function getCartTotals() {
+        const items = getCartItems();
+        const subtotals = { general: 0, printing: 0 };
+        let total = 0;
+        let count = 0;
+
+        items.forEach((item) => {
+          subtotals[item.product.type] += item.lineTotal;
+          total += item.lineTotal;
+          count += item.qty;
+        });
+
+        return { items, subtotals, total, count };
+      }
+
+      function getItemCount() {
+        return Object.values(state.cart).reduce((sum, line) => sum + line.qty, 0);
+      }
+
+      function hasAnyEnteredData() {
+        return (
+          getItemCount() > 0 ||
+          state.pickupConfirmed ||
+          Object.values(state.customer).some((value) => String(value).trim() !== "")
+        );
+      }
+
+      function syncCustomerFromForm() {
+        const fields = {
+          name: "customerName",
+          email: "customerEmail",
+          phone: "customerPhone",
+          notes: "customerNotes"
+        };
+
+        Object.entries(fields).forEach(([key, id]) => {
+          const input = document.getElementById(id);
+          if (input) state.customer[key] = input.value;
+        });
+      }
+
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      }
+
+      function isValidPhone(phone) {
+        const digits = phone.replace(/\D/g, "");
+        return digits.length >= 10 && digits.length <= 15;
+      }
+
+      function setFormError(message) {
+        const error = document.getElementById("formError");
+        if (error) error.textContent = message || "";
+      }
+
+      function setFieldError(field, message) {
+        const fields = {
+          name: { input: "customerName", error: "nameError" },
+          email: { input: "customerEmail", error: "emailError" },
+          phone: { input: "customerPhone", error: "phoneError" }
+        };
+
+        const config = fields[field];
+        if (!config) return;
+
+        const input = document.getElementById(config.input);
+        const error = document.getElementById(config.error);
+
+        if (error) error.textContent = message || "";
+        if (input) {
+          input.classList.toggle("is-invalid", Boolean(message));
+          if (message) input.setAttribute("aria-invalid", "true");
+          else input.removeAttribute("aria-invalid");
+        }
+      }
+
+      function clearFieldErrors() {
+        ["name", "email", "phone"].forEach((field) => setFieldError(field, ""));
+        setFormError("");
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById("toast");
+        if (!toast) return;
+
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+
+        if (toastTimer) window.clearTimeout(toastTimer);
+
+        toastTimer = window.setTimeout(() => {
+          toast.classList.remove("is-visible");
+        }, 3000);
+      }
+
+      function announce(message) {
+        const liveRegion = document.getElementById("liveRegion");
+        if (liveRegion) liveRegion.textContent = message;
+      }
+
+      /* =========================================================
+         CATALOG RENDERING
+         ========================================================= */
+      function renderCatalog() {
+        const catalog = document.getElementById("catalog");
+        if (!catalog) return;
+
+        const type = state.activeTab;
+        const isGeneral = type === "general";
+        const typedProducts = PRODUCTS.filter((product) => product.type === type);
+        const categories = Array.from(new Set(typedProducts.map((product) => product.category)));
+
+        catalog.classList.toggle("theme-general", isGeneral);
+        catalog.classList.toggle("theme-printing", !isGeneral);
+
+        const catalogBadge = document.getElementById("catalogBadge");
+        if (catalogBadge) {
+          catalogBadge.innerHTML = isGeneral
+            ? '<span class="badge badge--store">General Store</span>'
+            : '<span class="badge badge--print">Printing Services</span>';
+        }
+
+        const catalogTitle = document.getElementById("catalogTitle");
+        if (catalogTitle) {
+          catalogTitle.textContent = isGeneral ? "General Store" : "Printing Services";
+        }
+
+        const catalogDescription = document.getElementById("catalogDescription");
+        if (catalogDescription) {
+          catalogDescription.textContent = isGeneral
+            ? "Practical everyday items from the shop. Use Quick-Add chips to build your pickup request."
+            : "Copy jobs, document printing, photos, lamination, binding, cards and digital services. Choose options where available, then Quick-Add.";
+        }
+
+        const searchInput = document.getElementById("searchInput");
+        if (searchInput) {
+          searchInput.placeholder = isGeneral
+            ? "Search general store items…"
+            : "Search printing services…";
+        }
+
+        const clearSearch = document.getElementById("clearSearch");
+        if (clearSearch) {
+          clearSearch.hidden = state.search.trim().length === 0;
+        }
+
+        if (state.category !== "all" && !categories.includes(state.category)) {
+          state.category = "all";
+        }
+
+        const categoryFilters = document.getElementById("categoryFilters");
+        if (categoryFilters) {
+          const filters = ["all"].concat(categories);
+          categoryFilters.innerHTML = filters.map((category) => {
+            const label = category === "all" ? "All items" : category;
+            const active = state.category === category;
+            return `
+              <button
+                type="button"
+                class="filter-chip ${active ? "is-active" : ""}"
+                data-action="filter-category"
+                data-category="${escapeHTML(category)}"
+                aria-pressed="${active ? "true" : "false"}"
+              >${escapeHTML(label)}</button>
+            `;
+          }).join("");
+        }
+
+        const term = state.search.trim().toLowerCase();
+
+        const visibleProducts = typedProducts.filter((product) => {
+          const categoryMatches = state.category === "all" || product.category === state.category;
+          const variantLabels = product.variants.map((variant) => variant.label).join(" ");
+          const haystack = `${product.name} ${product.meta} ${product.category} ${product.unit} ${variantLabels}`.toLowerCase();
+          return categoryMatches && (!term || haystack.includes(term));
+        });
+
+        const resultsCount = document.getElementById("resultsCount");
+        if (resultsCount) {
+          const categoryText = state.category === "all" ? "" : ` in ${state.category}`;
+          resultsCount.textContent = visibleProducts.length
+            ? `${visibleProducts.length} item${visibleProducts.length === 1 ? "" : "s"} shown${categoryText}`
+            : `No items found${categoryText}`;
+        }
+
+        const productGrid = document.getElementById("productGrid");
+        if (productGrid) {
+          if (!visibleProducts.length) {
+            productGrid.innerHTML = `
+              <div class="empty-state">
+                <span class="empty-icon" aria-hidden="true">🔎</span>
+                <h3>No matching items</h3>
+                <p>Try a different search or choose another category.</p>
+                <button type="button" class="button button--ghost button--small" data-action="clear-filters">
+                  Clear search &amp; filters
+                </button>
+              </div>
+            `;
+          } else {
+            productGrid.innerHTML = visibleProducts.map(renderProductCard).join("");
+          }
+        }
+
+        document.querySelectorAll("#catalogTabs [data-tab]").forEach((button) => {
+          const active = button.dataset.tab === type;
+          button.classList.toggle("is-active", active);
+          button.setAttribute("aria-selected", String(active));
+        });
+
+        document.querySelectorAll(".primary-nav [data-tab]").forEach((button) => {
+          button.classList.toggle("is-current", button.dataset.tab === type);
+        });
+      }
+
+      function renderProductCard(product) {
+        const selectedVariantId = getSelectedVariantId(product.id);
+        const selectedVariant =
+          product.variants.find((variant) => variant.id === selectedVariantId) ||
+          product.variants[0];
+
+        const lineKey = makeLineKey(product.id, selectedVariant.id);
+        const qty = state.cart[lineKey]?.qty || 0;
+        const productQty = getProductQty(product.id);
+        const lastQuick = state.lastQuick[lineKey];
+        const otherQty = Math.max(0, productQty - qty);
+
+        const cardClass = product.type === "general" ? "product-card--store" : "product-card--print";
+        const badgeClass = product.type === "general" ? "badge--store" : "badge--print";
+        const typeLabel = product.type === "general" ? "General Store" : "Printing";
+        const unitNote = product.unit ? `per ${product.unit}` : "each";
+
+        const variantRows = product.variants.length > 1
+          ? `
+            <div class="option-row">
+              <span class="option-label">Choose option</span>
+              <div class="option-chips">
+                ${product.variants.map((variant) => {
+                  const active = variant.id === selectedVariant.id;
+                  return `
+                    <button
+                      type="button"
+                      class="option-chip ${active ? "is-active" : ""}"
+                      data-action="select-variant"
+                      data-product-id="${escapeHTML(product.id)}"
+                      data-variant-id="${escapeHTML(variant.id)}"
+                      aria-pressed="${active ? "true" : "false"}"
+                    >
+                      ${escapeHTML(variant.label)}
+                      <span>${formatINR(variant.price)}</span>
+                    </button>
+                  `;
+                }).join("")}
+              </div>
+            </div>
+          `
+          : "";
+
+        const quickButtons = product.quick.map((amount) => {
+          const active = lastQuick === amount;
+          const selectedLabel = selectedVariant.label ? ` ${selectedVariant.label}` : "";
+          return `
+            <button
+              type="button"
+              class="quick-chip ${active ? "is-active" : ""}"
+              data-action="quick-add"
+              data-product-id="${escapeHTML(product.id)}"
+              data-quantity="${amount}"
+              aria-label="Add ${amount} ${escapeHTML(product.unit || "item")}${amount === 1 ? "" : "s"} of ${escapeHTML(product.name)}${escapeHTML(selectedLabel)} to pickup request"
+              aria-pressed="${active ? "true" : "false"}"
+            >+${amount}</button>
+          `;
+        }).join("");
+
+        const qtyControls = qty > 0
+          ? `
+            <div class="card-stepper" aria-label="Selected option quantity">
+              <button
+                type="button"
+                class="stepper-btn"
+                data-action="card-dec"
+                data-product-id="${escapeHTML(product.id)}"
+                aria-label="Decrease quantity"
+              >−</button>
+              <span class="stepper-value">${qty}</span>
+              <button
+                type="button"
+                class="stepper-btn"
+                data-action="card-inc"
+                data-product-id="${escapeHTML(product.id)}"
+                aria-label="Increase quantity"
+              >+</button>
+              <button
+                type="button"
+                class="remove-mini"
+                data-action="card-remove"
+                data-product-id="${escapeHTML(product.id)}"
+              >Remove</button>
+            </div>
+          `
+          : `<span class="card-hint">Use a quick-add chip to start</span>`;
+
+        const otherOptionsNote = otherQty > 0
+          ? `<span class="other-options">${otherQty} more in request across other option${otherQty === 1 ? "" : "s"}</span>`
+          : "";
+
+        return `
+          <article class="product-card ${cardClass}" aria-labelledby="product-title-${escapeHTML(product.id)}">
+            <div class="product-top">
+              <div class="product-icon" aria-hidden="true">${escapeHTML(product.icon)}</div>
+              <div class="product-title-wrap">
+                <span class="badge ${badgeClass}">${typeLabel}</span>
+                <h3 id="product-title-${escapeHTML(product.id)}">${escapeHTML(product.name)}</h3>
+                <p class="product-meta">${escapeHTML(product.meta)}</p>
+              </div>
+            </div>
+
+            <div class="product-price-row">
+              <span class="product-price">${formatINR(selectedVariant.price)}</span>
+              <span class="product-unit">${escapeHTML(unitNote)}</span>
+            </div>
+
+            ${variantRows}
+
+            <div class="quick-add-row">
+              <span class="quick-add-label">Quick add</span>
+              <div class="quick-chips">${quickButtons}</div>
+            </div>
+
+            <div class="card-footer">
+              ${qtyControls}
+              ${otherOptionsNote}
+            </div>
+          </article>
+        `;
+      }
+
+      /* =========================================================
+         CART / REQUEST RENDERING
+         ========================================================= */
+      function renderCart() {
+        const totals = getCartTotals();
+        const { items, subtotals, total, count } = totals;
+
+        const countPill = document.getElementById("cartCountPill");
+        if (countPill) {
+          countPill.textContent = `${count} item${count === 1 ? "" : "s"}`;
+        }
+
+        const headerCount = document.getElementById("headerRequestCount");
+        if (headerCount) {
+          headerCount.textContent = String(count);
+        }
+
+        renderPickupControl();
+
+        const cartItems = document.getElementById("cartItems");
+        if (cartItems) {
+          if (!items.length) {
+            cartItems.innerHTML = `
+              <div class="empty-cart">
+                <span aria-hidden="true">🧺</span>
+                <p>
+                  <strong>Your request is empty.</strong><br />
+                  Add General Store items or Printing services with the Quick-Add chips.
+                </p>
+              </div>
+            `;
+          } else {
+            const general = items.filter((item) => item.product.type === "general");
+            const printing = items.filter((item) => item.product.type === "printing");
+
+            cartItems.innerHTML = [
+              general.length ? renderCartGroup("General Store", general, "store", subtotals.general) : "",
+              printing.length ? renderCartGroup("Printing Services", printing, "print", subtotals.printing) : ""
+            ].join("");
+          }
+        }
+
+        const cartTotals = document.getElementById("cartTotals");
+        if (cartTotals) {
+          cartTotals.innerHTML = `
+            <div class="total-line">
+              <span>General store subtotal</span>
+              <span>${formatINR(subtotals.general)}</span>
+            </div>
+            <div class="total-line">
+              <span>Printing subtotal</span>
+              <span>${formatINR(subtotals.printing)}</span>
+            </div>
+            <div class="total-line total-line--grand">
+              <span>Total payable at pickup</span>
+              <strong>${formatINR(total)}</strong>
+            </div>
+            <p class="payment-note">
+              No online payment is collected here. Final availability and the amount are confirmed by the store.
+            </p>
+          `;
+        }
+
+        const submitButton = document.getElementById("submitRequest");
+        if (submitButton) {
+          submitButton.disabled = items.length === 0;
+          submitButton.title = items.length
+            ? ""
+            : "Add at least one item before generating a pickup request.";
+        }
+
+        document.querySelectorAll(
+          '[data-action="preview-slip"], [data-action="copy-current"], [data-action="download-current"]'
+        ).forEach((button) => {
+          button.disabled = items.length === 0;
+        });
+
+        const clearButton = document.querySelector('[data-action="clear-all"]');
+        if (clearButton) {
+          clearButton.disabled = !hasAnyEnteredData();
+        }
+
+        const mobileBar = document.getElementById("mobileBar");
+        const mobileCount = document.getElementById("mobileCount");
+        const mobileTotal = document.getElementById("mobileTotal");
+
+        if (mobileBar) {
+          mobileBar.classList.toggle("is-visible", count > 0);
+        }
+        if (mobileCount) {
+          mobileCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
+        }
+        if (mobileTotal) {
+          mobileTotal.textContent = formatINR(total);
+        }
+      }
+
+      function renderCartGroup(title, items, kind, subtotal) {
+        return `
+          <section class="cart-group">
+            <div class="cart-group-head">
+              <span class="badge ${kind === "store" ? "badge--store" : "badge--print"}">${title}</span>
+              <span class="cart-group-total">${formatINR(subtotal)}</span>
+            </div>
+            <ul class="cart-lines">
+              ${items.map(renderCartLine).join("")}
+            </ul>
+          </section>
+        `;
+      }
+
+      function renderCartLine(item) {
+        const variantLabel = item.variant.label
+          ? ` <span class="variant-label">— ${escapeHTML(item.variant.label)}</span>`
+          : "";
+
+        return `
+          <li class="cart-line">
+            <span class="cart-line-icon" aria-hidden="true">${escapeHTML(item.product.icon)}</span>
+            <div class="cart-line-body">
+              <div class="cart-line-head">
+                <div>
+                  <p class="cart-line-name">
+                    ${escapeHTML(item.product.name)}${variantLabel}
+                  </p>
+                  <p class="cart-line-meta">${escapeHTML(item.product.meta)}</p>
+                </div>
+                <button
+                  type="button"
+                  class="remove-button"
+                  data-action="cart-remove"
+                  data-line-key="${escapeHTML(item.key)}"
+                  aria-label="Remove ${escapeHTML(item.product.name)} from pickup request"
+                >Remove</button>
+              </div>
+
+              <div class="cart-line-foot">
+                <div class="qty-stepper" aria-label="Quantity for ${escapeHTML(item.product.name)}">
+                  <button
+                    type="button"
+                    data-action="cart-dec"
+                    data-line-key="${escapeHTML(item.key)}"
+                    aria-label="Decrease quantity"
+                  >−</button>
+                  <span>${item.qty}</span>
+                  <button
+                    type="button"
+                    data-action="cart-inc"
+                    data-line-key="${escapeHTML(item.key)}"
+                    aria-label="Increase quantity"
+                  >+</button>
+                </div>
+
+                <div class="cart-line-price">
+                  <span>${formatINR(item.unitPrice)} × ${item.qty}</span>
+                  <strong>${formatINR(item.lineTotal)}</strong>
+                </div>
+              </div>
+            </div>
+          </li>
+        `;
+      }
+
+      function renderPickupControl() {
+        const container = document.getElementById("pickupControl");
+        if (!container) return;
+
+        const active = state.pickupConfirmed;
+
+        container.innerHTML = `
+          <button
+            type="button"
+            class="pickup-toggle ${active ? "is-active" : ""}"
+            data-action="select-pickup"
+            aria-pressed="${active ? "true" : "false"}"
+          >
+            <span class="pickup-toggle-icon" aria-hidden="true">${active ? "✓" : "🚫"}</span>
+            <span class="pickup-toggle-copy">
+              <strong>No Delivery / Request Pickup</strong>
+              <small>${active
+                ? "Pickup selected — home delivery is not available."
+                : "Tap to switch into the pickup request flow."}</small>
+            </span>
+            <span class="pickup-state">${active ? "Active" : "Select"}</span>
+          </button>
+
+          <div class="pickup-detail ${active ? "is-active" : ""}">
+            <div class="pickup-detail-top">
+              <span class="dot" aria-hidden="true"></span>
+              <strong>${active ? "Pickup request selected" : "Pickup only — no home delivery"}</strong>
+            </div>
+            <p>Home delivery is not available. No delivery address is required.</p>
+            <address>
+              ${escapeHTML(STORE.address)}<br />
+              PIN ${escapeHTML(STORE.pin)}
+            </address>
+            <p class="pickup-small">
+              The store will confirm availability and pickup timing by phone, WhatsApp, or email.
+            </p>
+          </div>
+        `;
+      }
+
+      /* =========================================================
+         CART ACTIONS
+         ========================================================= */
+      function addQuickItem(productId, amount) {
+        const product = PRODUCT_MAP.get(productId);
+        if (!product || !Number.isFinite(amount) || amount <= 0) return;
+
+        const variantId = getSelectedVariantId(productId);
+        const lineKey = makeLineKey(productId, variantId);
+        const existing = state.cart[lineKey];
+
+        if (existing) {
+          existing.qty += amount;
+        } else {
+          state.cart[lineKey] = {
+            productId,
+            variantId,
+            qty: amount
+          };
+        }
+
+        state.lastQuick[lineKey] = amount;
+
+        renderCatalog();
+        renderCart();
+
+        const variant = product.variants.find((entry) => entry.id === variantId);
+        const variantText = variant && variant.label ? ` (${variant.label})` : "";
+        const totals = getCartTotals();
+
+        announce(
+          `${amount} ${product.unit || "item"}${amount === 1 ? "" : "s"} of ` +
+          `${product.name}${variantText} added. ${totals.count} items in request, total ${formatINR(totals.total)}.`
+        );
+      }
+
+      function changeLineQuantity(lineKey, delta) {
+        const line = state.cart[lineKey];
+        if (!line) return;
+
+        line.qty += delta;
+
+        if (line.qty <= 0) {
+          delete state.cart[lineKey];
+          delete state.lastQuick[lineKey];
+        } else {
+          delete state.lastQuick[lineKey];
+        }
+
+        renderCatalog();
+        renderCart();
+      }
+
+      function removeLine(lineKey) {
+        if (!state.cart[lineKey]) return;
+
+        delete state.cart[lineKey];
+        delete state.lastQuick[lineKey];
+
+        renderCatalog();
+        renderCart();
+        announce("Item removed from your pickup request.");
+      }
+
+      function selectPickup() {
+        if (state.pickupConfirmed) return;
+
+        state.pickupConfirmed = true;
+        renderCart();
+        showToast("Pickup selected. Home delivery is not available.");
+        announce("Pickup request selected. No delivery address is required.");
+      }
+
+      function requestPickupAndScroll() {
+        state.pickupConfirmed = true;
+        renderCart();
+        scrollToRequest();
+        showToast("Pickup selected. Home delivery is not available.");
+        announce("Pickup request selected. The store pickup address is shown in the request panel.");
+      }
+
+      function scrollToRequest() {
+        const panel = document.getElementById("requestPanel");
+        if (!panel) return;
+
+        const offset = 88;
+        const top = panel.getBoundingClientRect().top + window.scrollY - offset;
+
+        window.scrollTo({
+          top: Math.max(0, top),
+          behavior: "smooth"
+        });
+      }
+
+      /* =========================================================
+         TAB / FILTER ACTIONS
+         ========================================================= */
+      function setActiveTab(tab, shouldScroll = false) {
+        if (tab !== "general" && tab !== "printing") return;
+
+        const changed = state.activeTab !== tab;
+        state.activeTab = tab;
+
+        if (changed) {
+          state.category = "all";
+          state.search = "";
+
+          const searchInput = document.getElementById("searchInput");
+          if (searchInput) searchInput.value = "";
+        }
+
+        renderCatalog();
+
+        if (shouldScroll) {
+          const catalog = document.getElementById("catalog");
+          if (!catalog) return;
+
+          const offset = 86;
+          const top = catalog.getBoundingClientRect().top + window.scrollY - offset;
+
+          window.scrollTo({
+            top: Math.max(0, top),
+            behavior: "smooth"
+          });
+        }
+      }
+
+      /* =========================================================
+         SLIP BUILDING
+         ========================================================= */
+      function makeRequestRef(date = new Date()) {
+        const pad = (value) => String(value).padStart(2, "0");
+        return `KGS-${pad(date.getDate())}${pad(date.getMonth() + 1)}-${pad(date.getHours())}${pad(date.getMinutes())}${pad(date.getSeconds())}`;
+      }
+
+      function buildSlipText(mode = "draft") {
+        const totals = getCartTotals();
+        const isRequest = mode === "request";
+        const now = isRequest && state.submittedAt ? state.submittedAt : new Date();
+        const ref = isRequest
+          ? (state.requestRef || makeRequestRef(now))
+          : "DRAFT-PREVIEW";
+
+        const general = totals.items.filter((item) => item.product.type === "general");
+        const printing = totals.items.filter((item) => item.product.type === "printing");
+
+        const lines = [];
+
+        const addItemLines = (title, items) => {
+          lines.push(title);
+
+          if (!items.length) {
+            lines.push("  (none)");
+          } else {
+            items.forEach((item, index) => {
+              const variant = item.variant.label ? ` (${item.variant.label})` : "";
+              lines.push(`  ${index + 1}. ${item.product.name}${variant}`);
+              lines.push(
+                `     ${item.qty} ${item.product.unit || "item"}${item.qty === 1 ? "" : "s"} × ` +
+                `${formatINR(item.unitPrice)} = ${formatINR(item.lineTotal)}`
+              );
+            });
+          }
+
+          lines.push("");
+        };
+
+        lines.push("KUMAR GENERAL STORE & PRINTING SHOP");
+        lines.push("Pickup request / order slip");
+        lines.push(`Owner: ${STORE.owner}`);
+        lines.push(`Phone: ${STORE.phoneDisplay} | WhatsApp: ${STORE.whatsappDisplay}`);
+        lines.push(`Email: ${STORE.email}`);
+        lines.push("");
+        lines.push(`Reference: ${ref}`);
+        lines.push(`Generated: ${formatDateTime(now)}`);
+        lines.push(`Type: ${isRequest ? "PICKUP REQUEST SUMMARY" : "DRAFT PREVIEW (not submitted)"}`);
+        lines.push("Mode: PICKUP ONLY — NO HOME DELIVERY");
+        lines.push("");
+        lines.push("PICKUP LOCATION");
+        lines.push(`  ${STORE.address}`);
+        lines.push(`  PIN ${STORE.pin}, ${STORE.locality}`);
+        lines.push("");
+        lines.push("CLIENT DETAILS");
+        lines.push(`  Name: ${state.customer.name.trim() || "(not entered)"}`);
+        lines.push(`  Email: ${state.customer.email.trim() || "(not entered)"}`);
+        lines.push(`  Phone/WhatsApp: ${state.customer.phone.trim() || "(not entered)"}`);
+        lines.push(`  Notes: ${state.customer.notes.trim() || "(none)"}`);
+        lines.push("");
+        addItemLines("GENERAL STORE ITEMS", general);
+        addItemLines("PRINTING SERVICES", printing);
+        lines.push(`ITEM COUNT: ${totals.count}`);
+        lines.push(`GENERAL STORE SUBTOTAL: ${formatINR(totals.subtotals.general)}`);
+        lines.push(`PRINTING SUBTOTAL: ${formatINR(totals.subtotals.printing)}`);
+        lines.push(`TOTAL (payable at pickup): ${formatINR(totals.total)}`);
+        lines.push("");
+        lines.push(
+          isRequest
+            ? "STATUS: Pickup request summary prepared. Send this slip to the store via WhatsApp/email or show it at pickup. The store will confirm availability and the final amount."
+            : "STATUS: DRAFT PREVIEW ONLY. The request has not been sent to the store yet."
+        );
+        lines.push("");
+        lines.push("No home delivery is available. No delivery address is required.");
+        lines.push(
+          `Store contact: ${STORE.phoneDisplay} • WhatsApp ${STORE.whatsappDisplay} • ${STORE.email}`
+        );
+
+        return lines.join("\n");
+      }
+
+      function buildSlipHTML(mode = "draft") {
+        const totals = getCartTotals();
+        const isRequest = mode === "request";
+        const now = isRequest && state.submittedAt ? state.submittedAt : new Date();
+        const ref = isRequest
+          ? (state.requestRef || makeRequestRef(now))
+          : "DRAFT-PREVIEW";
+
+        const general = totals.items.filter((item) => item.product.type === "general");
+        const printing = totals.items.filter((item) => item.product.type === "printing");
+
+        const customerName = state.customer.name.trim();
+        const customerEmail = state.customer.email.trim();
+        const customerPhone = state.customer.phone.trim();
+        const customerNotes = state.customer.notes.trim();
+
+        const renderItemGroup = (title, items, badgeClass) => {
+          const subtotal = items.reduce((sum, item) => sum + item.lineTotal, 0);
+
+          return `
+            <section class="slip-items-section">
+              <div class="slip-items-head">
+                <span class="badge ${badgeClass}">${escapeHTML(title)}</span>
+                <strong>${formatINR(subtotal)}</strong>
+              </div>
+              ${items.length ? `
+                <ul class="slip-item-list">
+                  ${items.map((item) => `
+                    <li>
+                      <div>
+                        <strong>
+                          ${escapeHTML(item.product.name)}${
+                            item.variant.label
+                              ? `<span> — ${escapeHTML(item.variant.label)}</span>`
+                              : ""
+                          }
+                        </strong>
+                        <small>${escapeHTML(item.product.meta)}</small>
+                      </div>
+                      <div class="slip-item-math">
+                        <span>${item.qty} × ${formatINR(item.unitPrice)}</span>
+                        <strong>${formatINR(item.lineTotal)}</strong>
+                      </div>
+                    </li>
+                  `).join("")}
+                </ul>
+              ` : '<p class="slip-empty">No items in this section.</p>'}
+            </section>
+          `;
+        };
+
+        return `
+          <div class="slip-paper">
+            <header class="slip-brand">
+              <div class="brand-mark" aria-hidden="true">KG</div>
+              <div>
+                <h3>${escapeHTML(STORE.name)}</h3>
+                <p>Owner: ${escapeHTML(STORE.owner)} • Mithapur, Patna, Bihar</p>
+              </div>
+              <span class="slip-status ${isRequest ? "is-request" : ""}">
+                ${isRequest ? "PICKUP REQUEST" : "DRAFT PREVIEW"}
+              </span>
+            </header>
+
+            <div class="slip-meta-grid">
+              <div>
+                <span>Reference</span>
+                <strong>${escapeHTML(ref)}</strong>
+              </div>
+              <div>
+                <span>Generated</span>
+                <strong>${escapeHTML(formatDateTime(now))}</strong>
+              </div>
+              <div>
+                <span>Mode</span>
+                <strong>Pickup only — no delivery</strong>
+              </div>
+              <div>
+                <span>Item count</span>
+                <strong>${totals.count}</strong>
+              </div>
+            </div>
+
+            <section class="slip-block">
+              <h4>Pickup location</h4>
+              <p>
+                ${escapeHTML(STORE.address)}<br />
+                PIN ${escapeHTML(STORE.pin)}, ${escapeHTML(STORE.locality)}
+              </p>
+              <p class="slip-note">No home delivery. No delivery address is required.</p>
+            </section>
+
+            <section class="slip-block">
+              <h4>Client details</h4>
+              <div class="slip-client-grid">
+                <p>
+                  <span>Name</span>
+                  <strong>${escapeHTML(customerName || "(not entered)")}</strong>
+                </p>
+                <p>
+                  <span>Email</span>
+                  <strong>${escapeHTML(customerEmail || "(not entered)")}</strong>
+                </p>
+                <p>
+                  <span>Phone / WhatsApp</span>
+                  <strong>${escapeHTML(customerPhone || "(not entered)")}</strong>
+                </p>
+                <p class="slip-notes">
+                  <span>Notes</span>
+                  <strong>${escapeHTML(customerNotes || "(none)")}</strong>
+                </p>
+              </div>
+            </section>
+
+            ${renderItemGroup("General Store", general, "badge--store")}
+            ${renderItemGroup("Printing Services", printing, "badge--print")}
+
+            <div class="slip-totals">
+              <div>
+                <span>General store subtotal</span>
+                <strong>${formatINR(totals.subtotals.general)}</strong>
+              </div>
+              <div>
+                <span>Printing subtotal</span>
+                <strong>${formatINR(totals.subtotals.printing)}</strong>
+              </div>
+              <div class="slip-grand-total">
+                <span>Total payable at pickup</span>
+                <strong>${formatINR(totals.total)}</strong>
+              </div>
+            </div>
+
+            <p class="slip-status-note">
+              ${isRequest
+                ? "This pickup request summary is ready. Send it to the store via WhatsApp/email or show it at pickup. The store will confirm availability and the final amount."
+                : "This is a draft preview. It has not been sent to the store yet."}
+            </p>
+
+            <footer class="slip-footer">
+              <p>
+                <strong>${escapeHTML(STORE.owner)}</strong> •
+                ${escapeHTML(STORE.phoneDisplay)} •
+                ${escapeHTML(STORE.email)}
+              </p>
+              <p>
+                WhatsApp: ${escapeHTML(STORE.whatsappDisplay)} • No home delivery • Pickup only
+              </p>
+            </footer>
+          </div>
+        `;
+      }
+
+      function openSlipModal(mode) {
+        const totals = getCartTotals();
+
+        if (!totals.items.length) {
+          showToast("Add at least one item before opening the slip.");
+          return;
+        }
+
+        const dialog = document.getElementById("slipDialog");
+        const slipContent = document.getElementById("slipContent");
+        if (!dialog || !slipContent) return;
+
+        const isRequest = mode === "request";
+
+        if (isRequest) {
+          if (!state.submittedAt) state.submittedAt = new Date();
+          if (!state.requestRef) state.requestRef = makeRequestRef(state.submittedAt);
+        }
+
+        state.slipMode = mode;
+
+        const ref = isRequest ? state.requestRef : "DRAFT-PREVIEW";
+        state.currentSlipRef = ref;
+        state.currentSlipText = buildSlipText(mode);
+
+        slipContent.innerHTML = buildSlipHTML(mode);
+
+        const whatsappLink = document.getElementById("whatsappSlipLink");
+        if (whatsappLink) {
+          whatsappLink.href = `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(state.currentSlipText)}`;
+        }
+
+        const emailLink = document.getElementById("emailSlipLink");
+        if (emailLink) {
+          const subject = isRequest
+            ? `Pickup request ${ref} — ${STORE.name}`
+            : `Pickup draft — ${STORE.name}`;
+          emailLink.href = `mailto:${STORE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(state.currentSlipText)}`;
+        }
+
+        if (typeof dialog.showModal === "function") {
+          if (!dialog.open) dialog.showModal();
+        } else {
+          dialog.setAttribute("open", "open");
+        }
+      }
+
+      function closeSlipDialog() {
+        const dialog = document.getElementById("slipDialog");
+        if (!dialog) return;
+
+        if (typeof dialog.close === "function") {
+          dialog.close();
+        } else {
+          dialog.removeAttribute("open");
+        }
+      }
+
+      /* =========================================================
+         FORM SUBMISSION
+         ========================================================= */
+      function handleRequestSubmit(event) {
+        event.preventDefault();
+        syncCustomerFromForm();
+        clearFieldErrors();
+
+        const totals = getCartTotals();
+        const generalErrors = [];
+        let firstFocus = null;
+
+        if (!totals.items.length) {
+          generalErrors.push("Add at least one item to your pickup request.");
+        }
+
+        if (!state.pickupConfirmed) {
+          generalErrors.push("Tap “No Delivery / Request Pickup” to confirm store pickup.");
+          firstFocus = document.querySelector('[data-action="select-pickup"]');
+        }
+
+        const name = state.customer.name.trim();
+        if (name.length < 2) {
+          setFieldError("name", "Please enter your name (at least 2 characters).");
+          if (!firstFocus) firstFocus = document.getElementById("customerName");
+        }
+
+        const email = state.customer.email.trim();
+        if (!isValidEmail(email)) {
+          setFieldError("email", "Enter a valid email address.");
+          if (!firstFocus) firstFocus = document.getElementById("customerEmail");
+        }
+
+        const phone = state.customer.phone.trim();
+        if (phone && !isValidPhone(phone)) {
+          setFieldError("phone", "Enter a valid phone number (10–15 digits) or leave it blank.");
+          if (!firstFocus) firstFocus = document.getElementById("customerPhone");
+        }
+
+        const hasFieldErrors = Boolean(
+          document.getElementById("nameError")?.textContent ||
+          document.getElementById("emailError")?.textContent ||
+          document.getElementById("phoneError")?.textContent
+        );
+
+        if (generalErrors.length) {
+          setFormError(generalErrors.join(" "));
+        }
+
+        if (!totals.items.length || !state.pickupConfirmed || hasFieldErrors) {
+          showToast("Please complete the highlighted request details.");
+          announce("Some pickup request details need attention.");
+
+          if (firstFocus) {
+            firstFocus.focus();
+          } else {
+            const panel = document.getElementById("requestPanel");
+            if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+
+          return;
+        }
+
+        setFormError("");
+        state.submittedAt = new Date();
+        state.requestRef = makeRequestRef(state.submittedAt);
+
+        openSlipModal("request");
+        showToast("Pickup request summary ready. Send it to the store via WhatsApp or email.");
+        announce("Pickup request summary ready. No order is confirmed until the store responds.");
+      }
+
+      /* =========================================================
+         CLIPBOARD / DOWNLOAD
+         ========================================================= */
+      function fallbackCopy(text) {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.top = "-9999px";
+        textarea.style.left = "-9999px";
+
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+
+        const successful = document.execCommand("copy");
+        document.body.removeChild(textarea);
+
+        if (!successful) {
+          throw new Error("Copy command failed");
+        }
+      }
+
+      async function copyText(text, successMessage = "Copied to clipboard.") {
+        const value = String(text || "");
+
+        if (!value.trim()) {
+          showToast("Nothing to copy yet.");
+          return;
+        }
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(value);
+          } else {
+            fallbackCopy(value);
+          }
+
+          showToast(successMessage);
+          announce(successMessage);
+        } catch (error) {
+          try {
+            fallbackCopy(value);
+            showToast(successMessage);
+            announce(successMessage);
+          } catch (fallbackError) {
+            showToast("Could not copy automatically. Please select and copy the summary manually.");
+          }
+        }
+      }
+
+      function downloadText(text, fileName) {
+        const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        showToast("Slip downloaded.");
+      }
+
+      function previewSlip() {
+        syncCustomerFromForm();
+
+        if (getItemCount() === 0) {
+          showToast("Add at least one item first.");
+          return;
+        }
+
+        openSlipModal("draft");
+      }
+
+      function copyCurrentSummary() {
+        if (getItemCount() === 0) {
+          showToast("Add at least one item first.");
+          return;
+        }
+
+        syncCustomerFromForm();
+        const text = buildSlipText("draft");
+        copyText(text, "Current pickup summary copied.");
+      }
+
+      function downloadCurrentSummary() {
+        if (getItemCount() === 0) {
+          showToast("Add at least one item first.");
+          return;
+        }
+
+        syncCustomerFromForm();
+        const text = buildSlipText("draft");
+        downloadText(text, "kumar-general-store-printing-pickup-draft.txt");
+      }
+
+      function copyActiveSlip() {
+        if (!state.currentSlipText) {
+          if (getItemCount() === 0) {
+            showToast("Add at least one item first.");
+            return;
+          }
+
+          syncCustomerFromForm();
+          state.currentSlipText = buildSlipText(state.slipMode || "draft");
+        }
+
+        copyText(state.currentSlipText, "Summary copied.");
+      }
+
+      function downloadActiveSlip() {
+        if (!state.currentSlipText) {
+          if (getItemCount() === 0) {
+            showToast("Add at least one item first.");
+            return;
+          }
+
+          syncCustomerFromForm();
+          state.currentSlipText = buildSlipText(state.slipMode || "draft");
+        }
+
+        const rawReference = state.slipMode === "request"
+          ? (state.currentSlipRef || "request")
+          : "draft-preview";
+
+        const safeReference = String(rawReference)
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "") || "slip";
+
+        downloadText(state.currentSlipText, `kumar-pickup-${safeReference}.txt`);
+      }
+
+      /* =========================================================
+         CLEAR / RESET
+         ========================================================= */
+      function clearAll() {
+        if (!hasAnyEnteredData()) {
+          showToast("Nothing to clear yet.");
+          return;
+        }
+
+        const confirmed = window.confirm(
+          "Clear all selected items, pickup mode, and customer details? This cannot be undone."
+        );
+
+        if (!confirmed) return;
+
+        state.cart = {};
+        state.lastQuick = {};
+        state.pickupConfirmed = false;
+        state.customer = {
+          name: "",
+          email: "",
+          phone: "",
+          notes: ""
+        };
+        state.submittedAt = null;
+        state.requestRef = "";
+        state.currentSlipText = "";
+        state.currentSlipRef = "";
+        state.slipMode = "draft";
+
+        PRODUCTS.forEach((product) => {
+          state.selectedVariants[product.id] = product.variants[0].id;
+        });
+
+        const form = document.getElementById("requestForm");
+        if (form) form.reset();
+
+        clearFieldErrors();
+        closeSlipDialog();
+        renderCatalog();
+        renderCart();
+
+        showToast("Selection, pickup choice, and form cleared.");
+        announce("All request details cleared.");
+      }
+
+      /* =========================================================
+         GLOBAL CLICK HANDLING
+         ========================================================= */
+      function handleDocumentClick(event) {
+        const actionElement = event.target.closest("[data-action]");
+        if (!actionElement) return;
+
+        const action = actionElement.dataset.action;
+        if (!action) return;
+
+        event.preventDefault();
+
+        switch (action) {
+          case "tab": {
+            const inCatalogTabs = Boolean(actionElement.closest("#catalogTabs"));
+            setActiveTab(actionElement.dataset.tab, !inCatalogTabs);
+            break;
+          }
+
+          case "filter-category": {
+            state.category = actionElement.dataset.category || "all";
+            renderCatalog();
+            break;
+          }
+
+          case "clear-search": {
+            state.search = "";
+            const input = document.getElementById("searchInput");
+            if (input) {
+              input.value = "";
+              input.focus();
+            }
+            renderCatalog();
+            break;
+          }
+
+          case "clear-filters": {
+            state.search = "";
+            state.category = "all";
+            const input = document.getElementById("searchInput");
+            if (input) input.value = "";
+            renderCatalog();
+            break;
+          }
+
+          case "select-variant": {
+            const productId = actionElement.dataset.productId;
+            const variantId = actionElement.dataset.variantId;
+            const product = PRODUCT_MAP.get(productId);
+
+            if (
+              product &&
+              variantId &&
+              product.variants.some((variant) => variant.id === variantId)
+            ) {
+              state.selectedVariants[productId] = variantId;
+              renderCatalog();
+            }
+            break;
+          }
+
+          case "quick-add": {
+            const productId = actionElement.dataset.productId;
+            const amount = Number(actionElement.dataset.quantity);
+
+            if (Number.isFinite(amount) && amount > 0) {
+              addQuickItem(productId, amount);
+            }
+            break;
+          }
+
+          case "card-inc": {
+            const productId = actionElement.dataset.productId;
+            const variantId = getSelectedVariantId(productId);
+
+            if (productId && variantId) {
+              changeLineQuantity(makeLineKey(productId, variantId), 1);
+            }
+            break;
+          }
+
+          case "card-dec": {
+            const productId = actionElement.dataset.productId;
+            const variantId = getSelectedVariantId(productId);
+
+            if (productId && variantId) {
+              changeLineQuantity(makeLineKey(productId, variantId), -1);
+            }
+            break;
+          }
+
+          case "card-remove": {
+            const productId = actionElement.dataset.productId;
+            const variantId = getSelectedVariantId(productId);
+
+            if (productId && variantId) {
+              removeLine(makeLineKey(productId, variantId));
+            }
+            break;
+          }
+
+          case "cart-inc": {
+            const lineKey = actionElement.dataset.lineKey;
+            if (lineKey) changeLineQuantity(lineKey, 1);
+            break;
+          }
+
+          case "cart-dec": {
+            const lineKey = actionElement.dataset.lineKey;
+            if (lineKey) changeLineQuantity(lineKey, -1);
+            break;
+          }
+
+          case "cart-remove": {
+            const lineKey = actionElement.dataset.lineKey;
+            if (lineKey) removeLine(lineKey);
+            break;
+          }
+
+          case "scroll-to-request": {
+            scrollToRequest();
+            break;
+          }
+
+          case "request-pickup": {
+            requestPickupAndScroll();
+            break;
+          }
+
+          case "select-pickup": {
+            selectPickup();
+            break;
+          }
+
+          case "clear-all": {
+            clearAll();
+            break;
+          }
+
+          case "preview-slip": {
+            previewSlip();
+            break;
+          }
+
+          case "copy-current": {
+            copyCurrentSummary();
+            break;
+          }
+
+          case "download-current": {
+            downloadCurrentSummary();
+            break;
+          }
+
+          case "copy-slip": {
+            copyActiveSlip();
+            break;
+          }
+
+          case "download-slip": {
+            downloadActiveSlip();
+            break;
+          }
+
+          case "print-slip": {
+            window.print();
+            break;
+          }
+
+          case "close-slip": {
+            closeSlipDialog();
+            break;
+          }
+
+          default:
+            break;
+        }
+      }
+
+      /* =========================================================
+         FORM INPUT HANDLING
+         ========================================================= */
+      function handleFormInput(event) {
+        const field = event.target.dataset.customerField;
+        if (!field) return;
+
+        state.customer[field] = event.target.value;
+
+        if (field === "name" || field === "email" || field === "phone") {
+          setFieldError(field, "");
+        }
+
+        setFormError("");
+
+        const clearButton = document.querySelector('[data-action="clear-all"]');
+        if (clearButton) {
+          clearButton.disabled = !hasAnyEnteredData();
+        }
+      }
+
+      /* =========================================================
+         INITIALIZATION
+         ========================================================= */
+      function init() {
+        PRODUCTS.forEach((product) => {
+          state.selectedVariants[product.id] = product.variants[0].id;
+        });
+
+        const searchInput = document.getElementById("searchInput");
+        if (searchInput) {
+          searchInput.addEventListener("input", (event) => {
+            state.search = event.target.value;
+            renderCatalog();
+          });
+        }
+
+        const requestForm = document.getElementById("requestForm");
+        if (requestForm) {
+          requestForm.addEventListener("submit", handleRequestSubmit);
+          requestForm.addEventListener("input", handleFormInput);
+        }
+
+        document.addEventListener("click", handleDocumentClick);
+
+        const dialog = document.getElementById("slipDialog");
+        if (dialog) {
+          dialog.addEventListener("click", (event) => {
+            if (event.target === dialog) closeSlipDialog();
+          });
+        }
+
+        renderCatalog();
+        renderCart();
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
+```
+
+### How it works for clients
+
+1. **Clearly separated shopping sections**
+   - The app has two dedicated tabs/sections: **General Store** and **Printing**.
+   - Each product card carries a distinct badge, colour strip, and styling: teal/green for General Store and violet for Printing.
+   - Search and category filters operate inside the active section so grocery items never mix with printing services.
+
+2. **Quick-Add chips and instant totals**
+   - Every product card has clickable quantity chips such as `+1`, `+2`, `+5`, or print-specific quantities like `+10`, `+50`, `+100`.
+   - Clicking a chip immediately adds items to the pickup request, highlights the active chip, updates the card quantity controls, cart count, section subtotals, and ₹ total.
+   - Items with options like visiting cards, invitations, and stickers show selectable finish/options with their own prices.
+   - Quantity can be increased, decreased, or removed from both the product cards and the pickup request panel.
+
+3. **No Delivery / Request Pickup flow**
+   - The prominent **No Delivery / Request Pickup** control switches on the pickup flow.
+   - It clearly states that home delivery is unavailable and shows the pickup location:
+     **New Bengali Tola, Bustand Rd, opp. NIFT College, Mithapur, Patna, Bihar, PIN 800001.**
+   - No home-delivery address field exists. Only name, email, optional phone/WhatsApp, and optional notes are required.
+
+4. **Validation and request summary**
+   - Required customer name and email are validated before generating a request.
+   - Optional phone numbers are validated if entered.
+   - Clients can preview the slip, copy it, download it as a `.txt`, print it, email the store, or send the summary directly to the owner’s WhatsApp.
+   - The slip separates General Store items and Printing items, shows quantities, unit prices, line totals, subtotals, total ₹ amount, pickup mode, store address, and store/owner contact details.
+
+### How it works for the owner, Rishabh Kushwaha
+
+1. **Structured order-slip view**
+   - The generated slip shows the request reference, date/time, client details, pickup mode, complete pickup address, General Store items separately from Printing items, item quantities, subtotals, and final total.
+   - Store contact details are included in the slip:
+     - Email: `rishabhkushwahaji@gmail.com`
+     - Phone: `082106 47700`
+     - WhatsApp: `+91 82106 47700`
+
+2. **Easy request handling**
+   - One-click **Copy summary**, **Download .txt**, **Print**, **WhatsApp**, and **Email store** actions make the request easy to share or archive.
+   - The request panel also has **Preview slip**, **Copy summary**, **Download .txt**, and **Clear / reset** controls.
+   - Clear/reset removes selected items, pickup state, customer fields, validation errors, and any open slip, so the next request starts cleanly.
+
+3. **Client-side completeness**
+   - This is a fully self-contained HTML/CSS/JavaScript app. It works without a server.
+   - No online payment is collected; the slip clearly states that final availability and amount are confirmed at pickup.
+   - The app uses **PIN 800001** for Mithapur, Patna. If your exact PIN differs, update `STORE.pin` inside the script and the visible address blocks.
